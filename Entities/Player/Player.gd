@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var speed = 75
 
 func _physics_process(delta):
+	# Direction, norma controller and move and collide
 	var direction: Vector2
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
