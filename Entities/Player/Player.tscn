@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Entities/Player/Assets/player_down_idle_2.png" type="Texture" id=1]
+[ext_resource path="res://Entities/Player/Assets/player_down_idle_1.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Player/Player.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "down_idle",
+"speed": 1.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.64663
+height = 4.54173
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "down_idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
