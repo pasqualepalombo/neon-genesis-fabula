@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="neon-genesi-fabula"
+run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [display]
