@@ -28,25 +28,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "down_idle",
+"name": "left_idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "down_walk",
+"name": "up_walk",
 "speed": 2.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "up_idle",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 19 ) ],
-"loop": false,
-"name": "up_attack",
-"speed": 7.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 21 ) ],
 "loop": false,
@@ -58,35 +48,45 @@ animations = [ {
 "name": "right_attack",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "down_attack",
-"speed": 7.0
+"frames": [ ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "right_idle",
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "left_walk",
 "speed": 2.0
 }, {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "down_attack",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 10 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "right_walk",
 "speed": 2.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "right_idle",
-"speed": 1.0
+"frames": [ ExtResource( 24 ), ExtResource( 19 ) ],
+"loop": false,
+"name": "up_attack",
+"speed": 7.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "left_idle",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "up_walk",
+"name": "down_walk",
 "speed": 2.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "up_idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "down_idle",
+"speed": 1.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="Health" type="ColorRect" parent="."]
+margin_left = 3.0
+margin_top = 158.0
+margin_right = 77.0
+margin_bottom = 167.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="ColorRect" parent="Health"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 73.0
+margin_bottom = 8.0
+color = Color( 1, 0.196078, 0.196078, 1 )
+
+[node name="Mana" type="ColorRect" parent="."]
+margin_left = 3.0
+margin_top = 169.0
+margin_right = 77.0
+margin_bottom = 178.0
+color = Color( 0, 0, 0, 0.627451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="ColorRect" parent="Mana"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 73.0
+margin_bottom = 8.0
+color = Color( 0.129412, 0.501961, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

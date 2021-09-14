@@ -2,11 +2,37 @@
 
 extends KinematicBody2D
 
-#player general variable for movements
+# Player signals
+signal player_stats_changed
+
+# Player general variable for movements
 export var speed = 75
+var health = 100
+var health_max = 100
+var health_regeneration = 1
+var mana = 100
+var mana_max = 100
+var mana_regeneration = 2
 # it memorize the last direction before the input stops.
 var last_direction = Vector2(0,1)
 var attack_playing = false
+
+
+func _ready():
+	emit_signal("player_stats_changed", self)
+
+
+func _process(delta):
+	# Health and Mana Regeneration
+	var new_health = min(health + health_regeneration * delta, health_max)
+	if new_health != health:
+		health = new_health
+		emit_signal("player_stats_changed")
+	var new_mana = min(mana + mana_regeneration * delta, mana_max)
+	if new_mana != mana:
+		mana = new_mana
+		emit_signal("player_stats_changed")
+
 
 func _physics_process(delta):
 	# Direction
@@ -62,3 +88,4 @@ func _input(event):
 
 func _on_AnimatedSprite_animation_finished():
 	attack_playing = false
+
