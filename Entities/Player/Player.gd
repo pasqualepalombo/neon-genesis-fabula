@@ -13,6 +13,10 @@ var health_regeneration = 1
 var mana = 100
 var mana_max = 100
 var mana_regeneration = 2
+var coins = 0
+var reputation = 0
+var experience = 10
+var level = 1
 # it memorize the last direction before the input stops.
 var last_direction = Vector2(0,1)
 var attack_playing = false
@@ -86,7 +90,11 @@ func _input(event):
 		$AnimatedSprite.play(animation)
 	# DEBUG
 	if event.is_action_pressed("debug1"):
-		health -= 20
+		reputation += 20
+		emit_signal("player_stats_changed", self)
+	if event.is_action_pressed("debug2"):
+		coins += 20
+		emit_signal("player_stats_changed", self)
 
 func _on_AnimatedSprite_animation_finished():
 	attack_playing = false

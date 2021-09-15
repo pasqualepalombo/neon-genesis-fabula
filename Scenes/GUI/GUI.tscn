@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/GUI/TopLeft.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/GUI/ProgressionBar.gd" type="Script" id=4]
 
 [node name="GUI" type="CanvasLayer"]
 
@@ -41,3 +44,85 @@ color = Color( 0.129412, 0.501961, 1, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TopLeft" type="ColorRect" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 25.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="RichTextLabel" parent="TopLeft"]
+margin_left = 2.0
+margin_right = 92.0
+margin_bottom = 12.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "Coins"
+text = "Coins"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reputation" type="RichTextLabel" parent="TopLeft"]
+margin_left = 2.0
+margin_top = 10.0
+margin_right = 92.0
+margin_bottom = 22.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "Coins"
+text = "Reputation"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressionBar" type="ColorRect" parent="."]
+margin_left = 5.0
+margin_top = 30.0
+margin_right = 77.0
+margin_bottom = 50.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LabelXP" type="Label" parent="ProgressionBar"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 22.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 3 )
+text = "XP:"
+
+[node name="ValueXP" type="Label" parent="ProgressionBar"]
+margin_left = 21.0
+margin_top = 1.0
+margin_right = 71.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 3 )
+text = "0/100"
+align = 2
+
+[node name="ValueLevel" type="Label" parent="ProgressionBar"]
+margin_left = 21.0
+margin_top = 10.0
+margin_right = 71.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "1"
+align = 2
+
+[node name="LabelLevel" type="Label" parent="ProgressionBar"]
+margin_left = 2.0
+margin_top = 10.0
+margin_right = 30.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "Level:"
