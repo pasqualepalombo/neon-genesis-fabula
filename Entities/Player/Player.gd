@@ -2,8 +2,8 @@
 
 extends KinematicBody2D
 
-# Player signals
-signal player_stats_changed
+# Connected to the GUI/HealthBar, with all the variables. 
+signal player_stats_changed(Player)
 
 # Player general variable for movements
 export var speed = 75
@@ -27,11 +27,11 @@ func _process(delta):
 	var new_health = min(health + health_regeneration * delta, health_max)
 	if new_health != health:
 		health = new_health
-		emit_signal("player_stats_changed")
+		emit_signal("player_stats_changed", self)
 	var new_mana = min(mana + mana_regeneration * delta, mana_max)
 	if new_mana != mana:
 		mana = new_mana
-		emit_signal("player_stats_changed")
+		emit_signal("player_stats_changed", self)
 
 
 func _physics_process(delta):
@@ -84,7 +84,9 @@ func _input(event):
 		attack_playing = true
 		var animation = get_direction_for_animation(last_direction) + "_attack"
 		$AnimatedSprite.play(animation)
-
+	# DEBUG
+	if event.is_action_pressed("debug1"):
+		health -= 20
 
 func _on_AnimatedSprite_animation_finished():
 	attack_playing = false

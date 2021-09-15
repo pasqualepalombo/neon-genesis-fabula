@@ -33,20 +33,30 @@ animations = [ {
 "name": "left_idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "up_walk",
-"speed": 2.0
-}, {
 "frames": [ ExtResource( 25 ), ExtResource( 21 ) ],
 "loop": false,
 "name": "left_attack",
 "speed": 7.0
 }, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "up_walk",
+"speed": 2.0
+}, {
 "frames": [ ExtResource( 18 ), ExtResource( 20 ) ],
 "loop": false,
 "name": "right_attack",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 19 ) ],
+"loop": false,
+"name": "up_attack",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "down_idle",
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 8 ) ],
 "loop": true,
@@ -63,29 +73,19 @@ animations = [ {
 "name": "down_attack",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "right_walk",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 19 ) ],
-"loop": false,
-"name": "up_attack",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 12 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "down_walk",
 "speed": 2.0
 }, {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "right_walk",
+"speed": 2.0
+}, {
 "frames": [ ExtResource( 11 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "up_idle",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "down_idle",
 "speed": 1.0
 } ]
 
@@ -93,7 +93,7 @@ animations = [ {
 radius = 4.64663
 height = 4.54173
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
