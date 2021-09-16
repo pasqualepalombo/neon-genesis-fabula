@@ -1,9 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/GUI/TopLeft.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scenes/GUI/ProgressionBar.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/GUI/DialoguePopup.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ShowDialogue"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect/Dialogue:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect/Answers:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="GUI" type="CanvasLayer"]
 
@@ -76,7 +104,7 @@ margin_bottom = 22.0
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "Coins"
-text = "Reputation"
+text = "Coins"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -126,3 +154,55 @@ margin_right = 30.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
 text = "Level:"
+
+[node name="DialoguePopup" type="Popup" parent="."]
+pause_mode = 2
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+popup_exclusive = true
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialoguePopup"]
+anims/ShowDialogue = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="DialoguePopup"]
+margin_left = 10.0
+margin_top = 115.0
+margin_right = 310.0
+margin_bottom = 170.0
+
+[node name="NPCName" type="Label" parent="DialoguePopup/ColorRect"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 295.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Fiona"
+
+[node name="Dialogue" type="Label" parent="DialoguePopup/ColorRect"]
+margin_left = 5.0
+margin_top = 15.0
+margin_right = 295.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+text = "Hello adventurer! I lost my necklace, can you find it for me?"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Answers" type="Label" parent="DialoguePopup/ColorRect"]
+margin_left = 5.0
+margin_top = 43.0
+margin_right = 295.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "[A] Yes [B] No"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
