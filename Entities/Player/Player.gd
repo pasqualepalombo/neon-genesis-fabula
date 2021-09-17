@@ -1,5 +1,3 @@
-#TODO ANIMATION(+GAMEPLAY?) BUG: If the player presses frienzly the attack button, the attack animation gets stuck
-
 extends KinematicBody2D
 
 # Connected to the GUI/HealthBar, with all the variables. 
@@ -17,8 +15,12 @@ var coins = 0
 var reputation = 0
 var experience = 10
 var level = 1
-# it memorize the last direction before the input stops.
+# It memorize the last direction before the input stops.
 var last_direction = Vector2(0,1)
+# Attack variables
+var attack_cooldown_time = 1000
+var next_attack_time = 0
+var attack_damage = 30
 var attack_playing = false
 
 
@@ -55,6 +57,9 @@ func _physics_process(delta):
 	# the engine can't change the animation if player's attacking
 	if not attack_playing:
 		player_animations_handler(direction)
+	# Turn RayCast2D toward movement direction
+	if direction != Vector2.ZERO:
+		$RayCast2D.cast_to = direction.normalized() * 8
 
 
 func player_animations_handler(direction: Vector2):
@@ -84,17 +89,30 @@ func get_direction_for_animation(direction: Vector2):
 
 
 func _input(event):
-	if event.is_action_pressed("attack") and not attack_playing:
-		attack_playing = true
-		var animation = get_direction_for_animation(last_direction) + "_attack"
-		$AnimatedSprite.play(animation)
+	if event.is_action_pressed("attack"):
+		# Check if player can attack
+		var now = OS.get_ticks_msec()
+		if now >= next_attack_time:
+			# What's the target?
+			var target = $RayCast2D.get_collider()
+			if target != null:
+				if target.is_in_group("Enemies"):
+					print("nemico")
+					# Play attack animation
+					attack_playing = true
+					var animation = get_direction_for_animation(last_direction) + "_attack"
+					$AnimatedSprite.play(animation)
+				if target.is_in_group("NPCs"):
+					# Talk to NPC
+					target.talk()
+					return
+			# Add cooldown time to current time
+			next_attack_time = now + attack_cooldown_time
 	# DEBUG
 	if event.is_action_pressed("debug1"):
-		reputation += 20
-		emit_signal("player_stats_changed", self)
+		pass
 	if event.is_action_pressed("debug2"):
-		coins += 20
-		emit_signal("player_stats_changed", self)
+		pass
 
 func _on_AnimatedSprite_animation_finished():
 	attack_playing = false

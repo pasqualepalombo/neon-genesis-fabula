@@ -162,6 +162,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 popup_exclusive = true
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DialoguePopup"]
 anims/ShowDialogue = SubResource( 1 )
@@ -171,6 +174,9 @@ margin_left = 10.0
 margin_top = 115.0
 margin_right = 310.0
 margin_bottom = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NPCName" type="Label" parent="DialoguePopup/ColorRect"]
 margin_left = 5.0
@@ -190,11 +196,13 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
 text = "Hello adventurer! I lost my necklace, can you find it for me?"
 autowrap = true
+percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Answers" type="Label" parent="DialoguePopup/ColorRect"]
+visible = false
 margin_left = 5.0
 margin_top = 43.0
 margin_right = 295.0
@@ -206,3 +214,5 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="animation_finished" from="DialoguePopup/AnimationPlayer" to="DialoguePopup" method="_on_AnimationPlayer_animation_finished"]
