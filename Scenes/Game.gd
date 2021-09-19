@@ -1,4 +1,5 @@
 extends Node
+# TODO old game script. See SaveLoadGame.gd in Script folder.
 
 func _ready():
 	#var hometown_scene = preload("res://Scenes/Places/Hometown.tscn").instance()

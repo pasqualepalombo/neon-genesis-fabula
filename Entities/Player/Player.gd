@@ -19,6 +19,10 @@ var coins = 0
 var reputation = 0
 var experience = 10
 var level = 1
+var xp = 0
+var xp_next_level = 100
+var health_potions = 0
+var mana_potions = 0
 # It memorize the last direction before the input stops.
 var last_direction = Vector2(0,1)
 # Attack variables
@@ -99,33 +103,70 @@ func _input(event):
 		if now >= next_attack_time:
 			# What's the target?
 			var target = $RayCast2D.get_collider()
-			if target != null:
-				if target.is_in_group("Enemies"):
-					print("nemico")
-					# Play attack animation
-					attack_playing = true
-					var animation = get_direction_for_animation(last_direction) + "_attack"
-					$AnimatedSprite.play(animation)
-				if target.is_in_group("NPCs"):
+			# The attack animation is always available except when the target is an NPC
+			if!(target != null and target.is_in_group("NPCs")):
+				# Play attack animation
+				attack_playing = true
+				var animation = get_direction_for_animation(last_direction) + "_attack"
+				$AnimatedSprite.play(animation)
+				# Play attack sound
+				$SoundAttack.play()
+				# Add cooldown time to current time
+				next_attack_time = now + attack_cooldown_time
+	if event.is_action_pressed("ui_accept"):
+		var target = $RayCast2D.get_collider()
+		if target != null:
+			if target.is_in_group("NPCs"):
 					# Talk to NPC
 					target.talk()
 					return
-				if target.name == "Bed":
-					# Sleep
-					emit_signal("player_sleep", self)
-					yield(get_tree().create_timer(1), "timeout")
-					health = health_max
-					mana = mana_max
-					emit_signal("player_stats_changed", self)
-					return
-			# Add cooldown time to current time
-			next_attack_time = now + attack_cooldown_time
+			if target.name == "Bed":
+				# Sleep
+				emit_signal("player_sleep", self)
+				yield(get_tree().create_timer(1), "timeout")
+				health = health_max
+				mana = mana_max
+				emit_signal("player_stats_changed", self)
+				return
 	# DEBUG
 	if event.is_action_pressed("debug1"):
 		pass
 	if event.is_action_pressed("debug2"):
 		pass
 
+
 func _on_AnimatedSprite_animation_finished():
 	attack_playing = false
 
+
+# If something is not connected with GUI and can't call the signal
+func force_reloading_GUI():
+	emit_signal("player_stats_changed", self)
+
+
+func to_dictionary():
+	return {
+		"position" : [position.x, position.y],
+		"health" : health,
+		"health_max" : health_max,
+		"mana" : mana,
+		"mana_max" : mana_max,
+		"xp" : xp,
+		"xp_next_level" : xp_next_level,
+		"level" : level,
+		"health_potions" : health_potions,
+		"mana_potions" : mana_potions
+	}
+
+
+func from_dictionary(data):
+	position = Vector2(data.position[0], data.position[1])
+	health = data.health
+	health_max = data.health_max
+	mana = data.mana
+	mana_max = data.mana_max
+	xp = data.xp
+	xp_next_level = data.xp_next_level
+	level = data.level
+	health_potions = data.health_potions
+	mana_potions = data.mana_potions

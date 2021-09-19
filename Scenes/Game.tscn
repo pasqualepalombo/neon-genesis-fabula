@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/SaveLoadGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/GUI/GUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/NPCs/Fiona/Fiona.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Objects/Necklace/Necklace.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/Buildings/House.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/mountain-trials.ogg" type="AudioStream" id=8]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -26,3 +27,9 @@ position = Vector2( 228.437, 183.276 )
 
 [node name="House" parent="." instance=ExtResource( 7 )]
 position = Vector2( 248.719, 19.1034 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 8 )
+volume_db = -6.0
+autoplay = true

@@ -31,7 +31,7 @@ func talk(answer = ""):
 					dialogue_state = 1
 					# Show dialogue popup
 					dialoguePopup.dialogue = "Hello adventurer! I lost my necklace, can you find it for me?"
-					dialoguePopup.answers = "[E] Yes  [Q] No"
+					dialoguePopup.answers = "[E] Yes  [Shift] No"
 					dialoguePopup.open()
 				1:
 					match answer:
@@ -72,7 +72,7 @@ func talk(answer = ""):
 					# Show dialogue popup
 					dialoguePopup.dialogue = "Did you find my necklace?"
 					if necklace_found:
-						dialoguePopup.answers = "[E] Yes  [Q] No"
+						dialoguePopup.answers = "[E] Yes  [Shift] No"
 					else:
 						dialoguePopup.answers = "[E] No"
 					dialoguePopup.open()
@@ -83,6 +83,8 @@ func talk(answer = ""):
 						# Show dialogue popup
 						dialoguePopup.dialogue = "You're my hero! Please take some money as a sign of my gratitude!"
 						dialoguePopup.answers = "[E] Thanks"
+						player.coins += 10
+						player.force_reloading_GUI()
 						dialoguePopup.open()
 					else:
 						# Update dialogue tree state
@@ -127,3 +129,15 @@ func talk(answer = ""):
 					dialoguePopup.close()
 					# Set Fiona's animation to "idle"
 					$AnimatedSprite.play("idle")
+
+
+func to_dictionary():
+	return {
+		"quest_status" : quest_status,
+		"necklace_found" : necklace_found
+	}
+
+
+func from_dictionary(data):
+	necklace_found = data.necklace_found
+	quest_status = int(data.quest_status)
