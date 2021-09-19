@@ -1,7 +1,11 @@
+#TODO When player sleep, during the Sleep Animation, He can moves around
+
 extends KinematicBody2D
 
 # Connected to the GUI/HealthBar, with all the variables. 
 signal player_stats_changed(Player)
+# Connected to the GUI, with all the variables. 
+signal player_sleep(Player)
 
 # Player general variable for movements
 export var speed = 75
@@ -105,6 +109,14 @@ func _input(event):
 				if target.is_in_group("NPCs"):
 					# Talk to NPC
 					target.talk()
+					return
+				if target.name == "Bed":
+					# Sleep
+					emit_signal("player_sleep", self)
+					yield(get_tree().create_timer(1), "timeout")
+					health = health_max
+					mana = mana_max
+					emit_signal("player_stats_changed", self)
 					return
 			# Add cooldown time to current time
 			next_attack_time = now + attack_cooldown_time
