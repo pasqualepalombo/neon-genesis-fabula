@@ -6,6 +6,8 @@ extends KinematicBody2D
 signal player_stats_changed(Player)
 # Connected to the GUI, with all the variables. 
 signal player_sleep(Player)
+# Connected to the GUI/LevelPopup, with all the variables. 
+signal player_level_up()
 
 # Player general variable for movements
 export var speed = 75
@@ -17,9 +19,8 @@ var mana_max = 100
 var mana_regeneration = 2
 var coins = 0
 var reputation = 0
-var experience = 10
+var experience = 0
 var level = 1
-var xp = 0
 var xp_next_level = 100
 var health_potions = 0
 var mana_potions = 0
@@ -130,9 +131,9 @@ func _input(event):
 				return
 	# DEBUG
 	if event.is_action_pressed("debug1"):
-		pass
+		add_xp(200)
 	if event.is_action_pressed("debug2"):
-		pass
+		print(health)
 
 
 func _on_AnimatedSprite_animation_finished():
@@ -144,6 +145,25 @@ func force_reloading_GUI():
 	emit_signal("player_stats_changed", self)
 
 
+func add_coins(value):
+	coins += value
+	emit_signal("player_stats_changed", self)
+	
+func add_reputation(value):
+	reputation += value
+	emit_signal("player_stats_changed", self)
+
+
+func add_xp(value):
+	experience += value
+	# Has the player reached the next level?
+	if experience >= xp_next_level:
+		level += 1
+		xp_next_level *= 2
+		emit_signal("player_level_up")
+	emit_signal("player_stats_changed", self)
+
+
 func to_dictionary():
 	return {
 		"position" : [position.x, position.y],
@@ -151,7 +171,7 @@ func to_dictionary():
 		"health_max" : health_max,
 		"mana" : mana,
 		"mana_max" : mana_max,
-		"xp" : xp,
+		"experience" : experience,
 		"xp_next_level" : xp_next_level,
 		"level" : level,
 		"health_potions" : health_potions,
@@ -165,7 +185,7 @@ func from_dictionary(data):
 	health_max = data.health_max
 	mana = data.mana
 	mana_max = data.mana_max
-	xp = data.xp
+	experience = data.experience
 	xp_next_level = data.xp_next_level
 	level = data.level
 	health_potions = data.health_potions

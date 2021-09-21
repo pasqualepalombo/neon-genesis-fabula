@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Maps/house_interior.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Maps/house_roof.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Buildings/House.gd" type="Script" id=3]
+[ext_resource path="res://Entities/NPCs/Mother/Mother.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 55.8365, 3.87064 )
@@ -187,6 +188,9 @@ position = Vector2( 0, 3.409 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoofHiding"]
 shape = SubResource( 15 )
+
+[node name="Mother" parent="." instance=ExtResource( 4 )]
+position = Vector2( 17.7757, -7.90974 )
 
 [connection signal="body_entered" from="RoofHiding" to="." method="_on_RoofHiding_body_entered"]
 [connection signal="body_exited" from="RoofHiding" to="." method="_on_RoofHiding_body_exited"]

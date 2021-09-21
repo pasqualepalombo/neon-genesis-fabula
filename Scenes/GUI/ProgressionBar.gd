@@ -7,5 +7,5 @@ func _ready():
 
 
 func on_player_stats_changed(player):
-	$ValueXP.text = str(player.experience) + "/100"
+	$ValueXP.text = str(player.experience) + "/" + str(player.xp_next_level)
 	$ValueLevel.text = str(player.level)

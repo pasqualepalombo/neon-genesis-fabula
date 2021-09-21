@@ -3,10 +3,9 @@ extends StaticBody2D
 enum QuestStatus {NOT_STARTED, STARTED, COMPLETED }
 var quest_status = QuestStatus.NOT_STARTED
 var dialogue_state = 0
-var necklace_found = false
+var medicine_bought = false
 var dialoguePopup
 var player
-enum Potion { HEALTH, MANA }
 
 
 func _ready():
@@ -20,7 +19,7 @@ func talk(answer = ""):
 	
 	# Set dialoguePopup npc to Fiona
 	dialoguePopup.npc = self
-	dialoguePopup.npc_name = "Fiona"
+	dialoguePopup.npc_name = "Mother"
 	
 	# Show the current dialogue
 	match quest_status:
@@ -30,8 +29,8 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 1
 					# Show dialogue popup
-					dialoguePopup.dialogue = "Hello adventurer! I lost my necklace, can you find it for me?"
-					dialoguePopup.answers = "[E] Yes  [Shift] No"
+					dialoguePopup.dialogue = "Dear Child, I ran out of medicine. Can you go the doctor? Please."
+					dialoguePopup.answers = "[E] Yes mom  [Shift] No. I'm busy"
 					dialoguePopup.open()
 				1:
 					match answer:
@@ -39,14 +38,14 @@ func talk(answer = ""):
 							# Update dialogue tree state
 							dialogue_state = 2
 							# Show dialogue popup
-							dialoguePopup.dialogue = "Thank you!"
+							dialoguePopup.dialogue = "Thank you, my boy. I'll wait here."
 							dialoguePopup.answers = "[E] Bye"
 							dialoguePopup.open()
 						"B":
 							# Update dialogue tree state
 							dialogue_state = 3
 							# Show dialogue popup
-							dialoguePopup.dialogue = "If you change your mind, you'll find me here."
+							dialoguePopup.dialogue = "Than... oh wait. I need them. Please."
 							dialoguePopup.answers = "[E] Bye"
 							dialoguePopup.open()
 				2:
@@ -70,25 +69,25 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 1
 					# Show dialogue popup
-					dialoguePopup.dialogue = "Did you find my necklace?"
-					if necklace_found:
-						dialoguePopup.answers = "[E] Yes  [Shift] No"
+					dialoguePopup.dialogue = "Did you buy my medicine, sweet child?"
+					if medicine_bought:
+						dialoguePopup.answers = "[E] Yes, here you are  [Shift] [Lie] Not yet"
 					else:
 						dialoguePopup.answers = "[E] No"
 					dialoguePopup.open()
 				1:
-					if necklace_found and answer == "A":
+					if medicine_bought and answer == "A":
 						# Update dialogue tree state
 						dialogue_state = 2
 						# Show dialogue popup
-						dialoguePopup.dialogue = "You're my hero! Please take some money as a sign of my gratitude!"
+						dialoguePopup.dialogue = "A gentleman, like your father. You're really kind."
 						dialoguePopup.answers = "[E] Thanks"
 						dialoguePopup.open()
 					else:
 						# Update dialogue tree state
 						dialogue_state = 3
 						# Show dialogue popup
-						dialoguePopup.dialogue = "Please, find it!"
+						dialoguePopup.dialogue = "Ok, but don't take it so long."
 						dialoguePopup.answers = "[E] I will!"
 						dialoguePopup.open()
 				2:
@@ -100,11 +99,11 @@ func talk(answer = ""):
 					# Set Fiona's animation to "idle"
 					$AnimatedSprite.play("idle")
 					# Add potion and XP to the player. 
-					player.add_coins(50)
+					yield(get_tree().create_timer(0.5), "timeout") #I added a little delay in case the level advancement panel appears.
 					player.add_xp(150)
+					#player.add_reputation(100)
 					#TODO 
 					#player.add_potion(Potion.HEALTH)
-					yield(get_tree().create_timer(0.5), "timeout") #I added a little delay in case the level advancement panel appears.
 				3:
 					# Update dialogue tree state
 					dialogue_state = 0
@@ -118,7 +117,7 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 1
 					# Show dialogue popup
-					dialoguePopup.dialogue = "Thanks again for your help!"
+					dialoguePopup.dialogue = "Now I'm fine. Thanks to you."
 					dialoguePopup.answers = "[E] Bye"
 					dialoguePopup.open()
 				1:
@@ -133,10 +132,10 @@ func talk(answer = ""):
 func to_dictionary():
 	return {
 		"quest_status" : quest_status,
-		"necklace_found" : necklace_found
+		"medicine_bought" : medicine_bought
 	}
 
 
 func from_dictionary(data):
-	necklace_found = data.necklace_found
+	medicine_bought = data.medicine_bought
 	quest_status = int(data.quest_status)
