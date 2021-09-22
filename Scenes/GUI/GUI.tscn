@@ -58,6 +58,7 @@ tracks/0/keys = {
 script = ExtResource( 6 )
 
 [node name="Health" type="ColorRect" parent="."]
+visible = false
 margin_left = 3.0
 margin_top = 158.0
 margin_right = 77.0
@@ -97,6 +98,7 @@ __meta__ = {
 }
 
 [node name="TopLeft" type="ColorRect" parent="."]
+visible = false
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 105.0
@@ -133,6 +135,7 @@ __meta__ = {
 }
 
 [node name="ProgressionBar" type="ColorRect" parent="."]
+visible = false
 margin_left = 5.0
 margin_top = 30.0
 margin_right = 77.0
@@ -180,7 +183,6 @@ text = "Level:"
 
 [node name="DialoguePopup" type="Popup" parent="."]
 pause_mode = 2
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 popup_exclusive = true
@@ -262,7 +264,6 @@ anims/Sleep = SubResource( 2 )
 
 [node name="MenuPopup" type="Popup" parent="."]
 pause_mode = 2
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 popup_exclusive = true
@@ -328,7 +329,6 @@ valign = 1
 
 [node name="LevelPopup" type="Popup" parent="."]
 pause_mode = 2
-visible = true
 margin_right = 150.0
 margin_bottom = 50.0
 popup_exclusive = true

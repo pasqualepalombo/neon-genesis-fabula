@@ -14,10 +14,10 @@ func _ready():
 
 
 func talk(answer = ""):
-	# Set Fiona's animation to "talk"
+	# Set Mother's animation to "talk"
 	$AnimatedSprite.play("talk")
 	
-	# Set dialoguePopup npc to Fiona
+	# Set dialoguePopup npc to Mother
 	dialoguePopup.npc = self
 	dialoguePopup.npc_name = "Mother"
 	
@@ -54,14 +54,14 @@ func talk(answer = ""):
 					quest_status = QuestStatus.STARTED
 					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Fiona's animation to "idle"
+					# Set Mother's animation to "idle"
 					$AnimatedSprite.play("idle")
 				3:
 					# Update dialogue tree state
 					dialogue_state = 0
 					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Fiona's animation to "idle"
+					# Set Mother's animation to "idle"
 					$AnimatedSprite.play("idle")
 		QuestStatus.STARTED:
 			match dialogue_state:
@@ -96,12 +96,12 @@ func talk(answer = ""):
 					quest_status = QuestStatus.COMPLETED
 					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Fiona's animation to "idle"
+					# Set Mother's animation to "idle"
 					$AnimatedSprite.play("idle")
 					# Add potion and XP to the player. 
 					yield(get_tree().create_timer(0.5), "timeout") #I added a little delay in case the level advancement panel appears.
 					player.add_xp(150)
-					#player.add_reputation(100)
+					player.add_reputation(10)
 					#TODO 
 					#player.add_potion(Potion.HEALTH)
 				3:
@@ -109,7 +109,7 @@ func talk(answer = ""):
 					dialogue_state = 0
 					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Fiona's animation to "idle"
+					# Set Mother's animation to "idle"
 					$AnimatedSprite.play("idle")
 		QuestStatus.COMPLETED:
 			match dialogue_state:
@@ -125,7 +125,7 @@ func talk(answer = ""):
 					dialogue_state = 0
 					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Fiona's animation to "idle"
+					# Set Mother's animation to "idle"
 					$AnimatedSprite.play("idle")
 
 
