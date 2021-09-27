@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/GUI/TopLeft.gd" type="Script" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://Assets/GUI/health_bonus.png" type="Texture" id=8]
 [ext_resource path="res://Assets/GUI/mana_bonus.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/GUI/LevelPopup.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Items/potions.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/GUI/HealthPotions.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/GUI/ManaPotions.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/GUI/QuestObjects.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "ShowDialogue"
@@ -383,5 +387,89 @@ margin_bottom = 35.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
 text = "[Shift]"
+
+[node name="QuestObjects" type="ColorRect" parent="."]
+margin_left = 281.0
+margin_top = 2.0
+margin_right = 317.0
+margin_bottom = 22.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="QuestObjects"]
+position = Vector2( 10, 10 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Label" type="Label" parent="QuestObjects"]
+margin_left = 19.0
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 2
+
+[node name="HealthPotions" type="ColorRect" parent="."]
+margin_left = 243.0
+margin_top = 158.0
+margin_right = 279.0
+margin_bottom = 178.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="HealthPotions"]
+position = Vector2( 10, 10 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Label" type="Label" parent="HealthPotions"]
+margin_left = 19.0
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 2
+
+[node name="ManaPotions" type="ColorRect" parent="."]
+margin_left = 281.0
+margin_top = 158.0
+margin_right = 317.0
+margin_bottom = 178.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ManaPotions"]
+position = Vector2( 10, 10 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="Label" type="Label" parent="ManaPotions"]
+margin_left = 19.0
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 2
 
 [connection signal="animation_finished" from="DialoguePopup/AnimationPlayer" to="DialoguePopup" method="_on_AnimationPlayer_animation_finished"]

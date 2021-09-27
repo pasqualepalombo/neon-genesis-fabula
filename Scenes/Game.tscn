@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/SaveLoadGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Entities/Buildings/House.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Audio/mountain-trials.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Entities/Buildings/DoctorHouse.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Entities/Objects/Potions/Potion.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -18,10 +19,21 @@ script = ExtResource( 1 )
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 367.651, 156.743 )
+position = Vector2( 245.301, 91.1531 )
 
 [node name="Fiona" parent="." instance=ExtResource( 5 )]
-position = Vector2( 52.5974, 154.805 )
+position = Vector2( 133.744, 51.7952 )
+
+[node name="Potion" parent="Fiona" instance=ExtResource( 10 )]
+position = Vector2( 137.443, 83.7828 )
+
+[node name="Potion2" parent="Fiona" instance=ExtResource( 10 )]
+position = Vector2( 88.0096, 84.6619 )
+type = 1
+
+[node name="Potion3" parent="Fiona" instance=ExtResource( 10 )]
+position = Vector2( 111.693, 76.0726 )
+type = 2
 
 [node name="Necklace" parent="." instance=ExtResource( 6 )]
 position = Vector2( -50.3202, 522.998 )

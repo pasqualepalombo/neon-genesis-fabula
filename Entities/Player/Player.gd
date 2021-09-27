@@ -22,6 +22,7 @@ var reputation = 0
 var experience = 0
 var level = 1
 var xp_next_level = 100
+enum Potion { HEALTH, MANA }
 var health_potions = 0
 var mana_potions = 0
 # It memorize the last direction before the input stops.
@@ -131,7 +132,7 @@ func _input(event):
 				return
 	# DEBUG
 	if event.is_action_pressed("debug1"):
-		add_xp(200)
+		add_coins(200)
 	if event.is_action_pressed("debug2"):
 		print(health)
 
@@ -161,6 +162,14 @@ func add_xp(value):
 		level += 1
 		xp_next_level *= 2
 		emit_signal("player_level_up")
+	emit_signal("player_stats_changed", self)
+
+
+func add_potion(type):
+	if type == Potion.HEALTH:
+		health_potions = health_potions + 1
+	else:
+		mana_potions = mana_potions + 1
 	emit_signal("player_stats_changed", self)
 
 
