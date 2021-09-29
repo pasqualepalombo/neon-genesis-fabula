@@ -13,12 +13,18 @@ func _ready():
 		$Fiona.from_dictionary(data.fiona)
 		if($Fiona.necklace_found):
 			$Necklace.queue_free()
+		$House/Mother.from_dictionary(data.mother)
+		$DoctorHouse/Doctor.from_dictionary(data.doctor)
+		$Merchant.from_dictionary(data.merchant)
 
 
 func save():
 	var data = {
 		"player" : $Player.to_dictionary(),
 		"fiona" : $Fiona.to_dictionary(),
+		"mother" : $House/Mother.to_dictionary(),
+		"doctor" : $DoctorHouse/Doctor.to_dictionary(),
+		"merchant" : $Merchant.to_dictionary(),
 	}
 	
 	var file = File.new()

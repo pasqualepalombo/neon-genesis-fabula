@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/SaveLoadGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Audio/mountain-trials.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Entities/Buildings/DoctorHouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Entities/Objects/Potions/Potion.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Entities/NPCs/Merchant/Merchant.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/Objects/QuestItems/Merchant_box.tscn" type="PackedScene" id=12]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -49,3 +51,15 @@ autoplay = true
 
 [node name="DoctorHouse" parent="." instance=ExtResource( 9 )]
 position = Vector2( 481.706, 216.505 )
+
+[node name="Merchant" parent="." instance=ExtResource( 11 )]
+position = Vector2( 210.722, 70.2406 )
+
+[node name="Merchant_box" parent="." instance=ExtResource( 12 )]
+position = Vector2( 158.745, 159.099 )
+
+[node name="Merchant_box2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 97.5233, 141.488 )
+
+[node name="Merchant_box3" parent="." instance=ExtResource( 12 )]
+position = Vector2( 117.733, 115.258 )

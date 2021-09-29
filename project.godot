@@ -24,6 +24,10 @@ config/name="neon-genesi-fabula"
 run/main_scene="res://Scenes/StartScreen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ItemHandler="*res://Scripts/item_handler.gd"
+
 [display]
 
 window/size/width=320
