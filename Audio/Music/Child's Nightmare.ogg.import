@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Child's Nightmare.ogg-93c440b22c331b1b3fc7f71e9c5f20b3.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/Child's Nightmare.ogg"
+dest_files=[ "res://.import/Child's Nightmare.ogg-93c440b22c331b1b3fc7f71e9c5f20b3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

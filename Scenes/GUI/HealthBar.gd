@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 
 func _ready():
@@ -8,5 +8,5 @@ func _ready():
 
 
 func on_player_stats_changed(player):
-	$Bar.rect_size.x = 72 * player.health / player.health_max
+	$HealthProgress.value = (player.health / player.health_max) * 100
 

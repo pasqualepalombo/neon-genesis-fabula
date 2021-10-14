@@ -132,7 +132,7 @@ func _input(event):
 				return
 	# DEBUG
 	if event.is_action_pressed("debug1"):
-		add_coins(200)
+		health -= 10
 	if event.is_action_pressed("debug2"):
 		print(health)
 
