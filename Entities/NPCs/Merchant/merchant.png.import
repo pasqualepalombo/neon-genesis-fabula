@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Merchant_talk_1.png-eff8f040e38ef889815883fc78801d72.stex"
+path="res://.import/merchant.png-a38dc3dbd2c94b5f8b0b8d44ef62740c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/NPCs/Merchant/Merchant_talk_1.png"
-dest_files=[ "res://.import/Merchant_talk_1.png-eff8f040e38ef889815883fc78801d72.stex" ]
+source_file="res://Entities/NPCs/Merchant/merchant.png"
+dest_files=[ "res://.import/merchant.png-a38dc3dbd2c94b5f8b0b8d44ef62740c.stex" ]
 
 [params]
 
