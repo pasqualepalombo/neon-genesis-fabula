@@ -131,10 +131,8 @@ func _input(event):
 				emit_signal("player_stats_changed", self)
 				return
 	# DEBUG
-	if event.is_action_pressed("debug1"):
-		health -= 10
 	if event.is_action_pressed("debug2"):
-		print(health)
+		pass
 
 
 func _on_AnimatedSprite_animation_finished():

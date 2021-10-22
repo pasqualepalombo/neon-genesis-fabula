@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mother_idle_1.png-408afd5db5daa327b4df1b92bd588e41.stex"
+path="res://.import/mother.png-41c5b98ddcf4bb50ce959c34a1b0ac83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/NPCs/Mother/mother_idle_1.png"
-dest_files=[ "res://.import/mother_idle_1.png-408afd5db5daa327b4df1b92bd588e41.stex" ]
+source_file="res://Entities/NPCs/Mother/mother.png"
+dest_files=[ "res://.import/mother.png-41c5b98ddcf4bb50ce959c34a1b0ac83.stex" ]
 
 [params]
 

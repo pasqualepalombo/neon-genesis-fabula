@@ -11,6 +11,7 @@ var player
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
+	QuestsList.MedicineQuest = quest_status
 
 
 func talk(answer = ""):
@@ -52,6 +53,7 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 0
 					quest_status = QuestStatus.STARTED
+					QuestsList.MedicineQuest = quest_status
 					# Close dialogue popup
 					dialoguePopup.close()
 					# Set Mother's animation to "idle"
@@ -94,6 +96,7 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 0
 					quest_status = QuestStatus.COMPLETED
+					QuestsList.MedicineQuest = quest_status
 					# Close dialogue popup
 					dialoguePopup.close()
 					# Set Mother's animation to "idle"
@@ -139,3 +142,4 @@ func to_dictionary():
 func from_dictionary(data):
 	medicine_bought = data.medicine_bought
 	quest_status = int(data.quest_status)
+	QuestsList.MedicineQuest = quest_status

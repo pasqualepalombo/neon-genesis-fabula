@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ItemHandler="*res://Scripts/item_handler.gd"
+QuestsList="*res://Scripts/quests_list.gd"
 
 [display]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mother_talk.png-dea22201f58339f4fea32116d7d93c8a.stex"
+path="res://.import/doctor.png-ca1549281932880f1144ff9d9e240935.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/NPCs/Mother/mother_talk.png"
-dest_files=[ "res://.import/mother_talk.png-dea22201f58339f4fea32116d7d93c8a.stex" ]
+source_file="res://Entities/NPCs/Doctor/doctor.png"
+dest_files=[ "res://.import/doctor.png-ca1549281932880f1144ff9d9e240935.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

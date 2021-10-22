@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/GUI/TopLeft.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Assets/GUI/GUI_healthbar_full.png" type="Texture" id=15]
 [ext_resource path="res://Assets/GUI/GUI_healthbar_empty.png" type="Texture" id=16]
 [ext_resource path="res://Assets/GUI/dialoguebox_ninepatchrect.png" type="Texture" id=17]
+[ext_resource path="res://Scenes/GUI/DEBUGtext.gd" type="Script" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "ShowDialogue"
@@ -467,5 +468,26 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 align = 2
+
+[node name="DEBUGrect" type="ColorRect" parent="."]
+margin_left = 142.0
+margin_right = 323.0
+margin_bottom = 185.0
+color = Color( 0, 0, 0, 0.317647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DEBUGtext" type="RichTextLabel" parent="DEBUGrect"]
+margin_right = 180.0
+margin_bottom = 181.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "test"
+text = "test"
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="animation_finished" from="DialoguePopup/AnimationPlayer" to="DialoguePopup" method="_on_AnimationPlayer_animation_finished"]
