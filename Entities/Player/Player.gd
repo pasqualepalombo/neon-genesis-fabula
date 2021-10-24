@@ -8,6 +8,8 @@ signal player_stats_changed(Player)
 signal player_sleep(Player)
 # Connected to the GUI/LevelPopup, with all the variables. 
 signal player_level_up()
+# Connecter to the GUI/QuestObject
+signal player_additem_to_gui()
 
 # Player general variable for movements
 export var speed = 75
@@ -17,7 +19,7 @@ var health_regeneration = 1
 var mana = 100
 var mana_max = 100
 var mana_regeneration = 2
-var coins = 0
+var coins = 100
 var reputation = 0
 var experience = 0
 var level = 1
@@ -169,6 +171,11 @@ func add_potion(type):
 	else:
 		mana_potions = mana_potions + 1
 	emit_signal("player_stats_changed", self)
+
+
+func add_questitem_in_GUI(x,y,text):
+	# TODO per ora non so come farlo meglio, forse rendere il player.gd script global?
+	emit_signal("player_additem_to_gui", x, y, text)
 
 
 func to_dictionary():

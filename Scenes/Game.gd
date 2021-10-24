@@ -1,5 +1,7 @@
 extends Node
 # TODO old game script. See SaveLoadGame.gd in Script folder.
+# TODO fare in modo che il questitem della GUI si attivi quando carico partita (visto che al momento
+	# viene chiamato il segnale solamente quando completo la missione
 
 func _ready():
 	#var hometown_scene = preload("res://Scenes/Places/Hometown.tscn").instance()
@@ -12,3 +14,4 @@ func _ready():
 	#player_scene.set_name("Player")
 	#self.add_child(player_scene)
 	pass
+

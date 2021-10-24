@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/doctor.png-ca1549281932880f1144ff9d9e240935.stex"
+path="res://.import/quest_item.png-fd9463c3198a15f7d62f3f9143abe4bb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/NPCs/Doctor/doctor.png"
-dest_files=[ "res://.import/doctor.png-ca1549281932880f1144ff9d9e240935.stex" ]
+source_file="res://Scenes/GUI/quest_item.png"
+dest_files=[ "res://.import/quest_item.png-fd9463c3198a15f7d62f3f9143abe4bb.stex" ]
 
 [params]
 

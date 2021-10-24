@@ -52,6 +52,7 @@ func _input(_event):
 					# Save Game
 					get_tree().root.get_node("Game").save()
 					get_tree().paused = false
+					player.set_process_input(true)
 					hide()
 				2:
 					# Back to start screen
@@ -59,3 +60,4 @@ func _input(_event):
 					if(get_tree().change_scene("res://Scenes/StartScreen.tscn")):
 						print("Errore nel tornare al menu principale dal menu di pausa")
 					get_tree().paused = false
+			

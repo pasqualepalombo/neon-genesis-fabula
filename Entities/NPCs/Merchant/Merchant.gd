@@ -12,12 +12,12 @@ enum Potion { HEALTH, MANA }
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
+	QuestsList.MeerchantQuest = quest_status
 
 
 func talk(answer = ""):
 	# Set Merchant's animation to "talk"
 	$AnimatedSprite.play("talk")
-	
 	# Set dialoguePopup npc to Merchant
 	dialoguePopup.npc = self
 	dialoguePopup.npc_name = "Merchant"
@@ -60,6 +60,7 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 0
 					quest_status = QuestStatus.STARTED
+					QuestsList.MeerchantQuest = quest_status
 					# Close dialogue popup
 					dialoguePopup.close()
 					# Set Merchant's animation to "idle"
@@ -116,3 +117,4 @@ func to_dictionary():
 func from_dictionary(data):
 	boxes_taken = data.boxes_taken
 	quest_status = int(data.quest_status)
+	QuestsList.MeerchantQuest = quest_status

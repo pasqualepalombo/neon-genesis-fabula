@@ -12,6 +12,10 @@ enum Potion { HEALTH, MANA }
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
+	QuestsList.DoctorQuest = quest_status
+	# BUG dovrebbe chiamare la funzione, ma non lo fa, e perciò non mi si aggiorna la GUI in carica partita
+	if medicine_bought and QuestsList.MedicineQuest != 2:
+		player.add_questitem_in_GUI(0,0,"notext")
 
 
 func talk(answer = ""):
@@ -56,11 +60,13 @@ func talk(answer = ""):
 							dialoguePopup.open()
 				2:
 					match answer:
-						# I have the money and i wanna buy
 						"A":
+							# I have the money and i wanna buy
 							# Update dialogue tree state
 							dialogue_state = 0
 							quest_status = QuestStatus.COMPLETED
+							QuestsList.DoctorQuest = quest_status
+							medicine_bought = true
 							# Close dialogue popup
 							dialoguePopup.close()
 							# Set Doctor's animation to "idle"
@@ -68,24 +74,16 @@ func talk(answer = ""):
 							# Add potion and XP to the player. 
 							player.add_coins(-20)
 							player.add_xp(100)
+							player.add_questitem_in_GUI(0,0,"notext")
 							yield(get_tree().create_timer(0.5), "timeout") #I added a little delay in case the level advancement panel appears.
-						# I have the money and i don't wanna buy
 						"B":
-							print("2:B")
+							# I have the money and i don't wanna buy
 							# Update dialogue tree state
 							dialogue_state = 4
 							# Show dialogue popup
 							dialoguePopup.dialogue = "If you change your mind, you'll find me here."
 							dialoguePopup.answers = "[E] Bye"
 							dialoguePopup.open()
-				3:
-					# Update dialogue tree state
-					dialogue_state = 0
-					quest_status = QuestStatus.STARTED
-					# Close dialogue popup
-					dialoguePopup.close()
-					# Set Doctor's animation to "idle"
-					$AnimatedSprite.play("idle")
 				4:
 					# Update dialogue tree state
 					dialogue_state = 0
@@ -122,3 +120,4 @@ func to_dictionary():
 func from_dictionary(data):
 	medicine_bought = data.medicine_bought
 	quest_status = int(data.quest_status)
+	QuestsList.DoctorQuest = quest_status
