@@ -134,7 +134,7 @@ func _input(event):
 				return
 	# DEBUG
 	if event.is_action_pressed("debug2"):
-		pass
+		print(ItemHandler.temporary_items)
 
 
 func _on_AnimatedSprite_animation_finished():

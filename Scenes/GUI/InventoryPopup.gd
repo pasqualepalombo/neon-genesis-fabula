@@ -30,7 +30,7 @@ func _input(_event):
 			load_all_stats()
 	else:
 		if Input.is_action_just_pressed("inventory"):
-			# Resume game
+			# Resume game # BUG non ritorna al gioco
 			get_tree().paused = false
 			player.set_process_input(true)
 			hide()

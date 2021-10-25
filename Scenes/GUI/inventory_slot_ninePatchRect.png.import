@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/quest_item.png-fd9463c3198a15f7d62f3f9143abe4bb.stex"
+path="res://.import/inventory_slot_ninePatchRect.png-47413c903971145a1ebafec6942c8789.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/GUI/quest_item.png"
-dest_files=[ "res://.import/quest_item.png-fd9463c3198a15f7d62f3f9143abe4bb.stex" ]
+source_file="res://Scenes/GUI/inventory_slot_ninePatchRect.png"
+dest_files=[ "res://.import/inventory_slot_ninePatchRect.png-47413c903971145a1ebafec6942c8789.stex" ]
 
 [params]
 

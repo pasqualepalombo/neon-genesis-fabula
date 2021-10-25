@@ -11,7 +11,7 @@
 [ext_resource path="res://Entities/Buildings/DoctorHouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Entities/Buildings/house1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Entities/NPCs/Merchant/Merchant.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Entities/Objects/QuestItems/Merchant_box.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Entities/Objects/QuestItems/packed_meal.tscn" type="PackedScene" id=12]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )

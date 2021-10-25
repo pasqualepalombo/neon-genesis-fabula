@@ -1,14 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/GUI/inventory_slot_ninePatchRect.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/GUI/GUI_ninePatchRect.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/GUI/DialoguePopup.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/GUI/MenuPopup.gd" type="Script" id=7]
 [ext_resource path="res://Assets/GUI/health_bonus.png" type="Texture" id=8]
 [ext_resource path="res://Assets/GUI/mana_bonus.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/GUI/LevelPopup.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Items/potions.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/GUI/items.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/GUI/HealthPotions.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/GUI/ManaPotions.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/GUI/QuestObjects.gd" type="Script" id=14]
@@ -16,7 +18,6 @@
 [ext_resource path="res://Assets/GUI/GUI_healthbar_empty.png" type="Texture" id=16]
 [ext_resource path="res://Assets/GUI/dialoguebox_ninepatchrect.png" type="Texture" id=17]
 [ext_resource path="res://Scenes/GUI/DEBUGtext.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/GUI/quest_item.png" type="Texture" id=19]
 [ext_resource path="res://Scenes/GUI/InventoryPopup.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=1]
@@ -61,6 +62,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 18, 19 )
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 6 )
@@ -125,7 +130,7 @@ margin_right = 296.0
 margin_bottom = 15.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Fiona"
+text = "Pasquale"
 
 [node name="Dialogue" type="Label" parent="DialoguePopup/ColorRect"]
 margin_left = 6.0
@@ -134,7 +139,7 @@ margin_right = 296.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Hello adventurer! I lost my necklace, can you find it for me?"
+text = "Ah quindi tu sei me che programmi cosa tu dici a me?"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -147,7 +152,7 @@ margin_right = 295.0
 margin_bottom = 58.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
-text = "[A] Yes [B] No"
+text = "[Colpiscilo male] No, no."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -186,244 +191,194 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Items" type="ColorRect" parent="InventoryPopup"]
-margin_left = 165.0
-margin_top = 10.0
-margin_right = 310.0
-margin_bottom = 85.0
-color = Color( 0, 0, 0, 0.666667 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Items" type="NinePatchRect" parent="InventoryPopup"]
+margin_left = 157.0
+margin_top = 5.0
+margin_right = 311.0
+margin_bottom = 87.0
+texture = ExtResource( 4 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
 [node name="Label" type="Label" parent="InventoryPopup/Items"]
-margin_left = 5.0
-margin_right = 45.0
-margin_bottom = 14.0
+margin_left = 10.3514
+margin_top = -1.78381
+margin_right = 50.3514
+margin_bottom = 12.2162
 custom_fonts/font = ExtResource( 3 )
 text = "ITEM(s)"
 
-[node name="Item#1" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 5.0
-margin_top = 15.0
-margin_right = 20.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
+[node name="GridContainer" type="GridContainer" parent="InventoryPopup/Items"]
+margin_left = 14.7678
+margin_top = 12.0
+margin_right = 137.768
+margin_bottom = 64.0
+custom_constants/vseparation = 3
+custom_constants/hseparation = 3
+columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="InventoryPopup/Items/Item#1"]
-position = Vector2( 7.5, 7.5 )
-texture = ExtResource( 19 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 15, 15 )
+[node name="Slot1" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_right = 15.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#2" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 25.0
-margin_top = 15.0
-margin_right = 40.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot2" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 18.0
+margin_right = 33.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Sprite2" type="Sprite" parent="InventoryPopup/Items/Item#2"]
-position = Vector2( 7.5, 7.5 )
-texture = ExtResource( 19 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 15, 15 )
+[node name="Slot3" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 36.0
+margin_right = 51.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#3" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 45.0
-margin_top = 15.0
-margin_right = 60.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot4" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 54.0
+margin_right = 69.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#4" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 65.0
-margin_top = 15.0
-margin_right = 80.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot5" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 72.0
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#5" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 85.0
-margin_top = 15.0
-margin_right = 100.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot6" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 90.0
+margin_right = 105.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#6" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 105.0
-margin_top = 15.0
-margin_right = 120.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot7" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 108.0
+margin_right = 123.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#7" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 125.0
-margin_top = 15.0
-margin_right = 140.0
-margin_bottom = 30.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot8" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_top = 18.0
+margin_right = 15.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#8" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 5.0
-margin_top = 35.0
-margin_right = 20.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot9" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 18.0
+margin_top = 18.0
+margin_right = 33.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#9" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 25.0
-margin_top = 35.0
-margin_right = 40.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot10" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 36.0
+margin_top = 18.0
+margin_right = 51.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#10" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 45.0
-margin_top = 35.0
-margin_right = 60.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot11" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 54.0
+margin_top = 18.0
+margin_right = 69.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#11" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 65.0
-margin_top = 35.0
-margin_right = 80.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot12" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 72.0
+margin_top = 18.0
+margin_right = 87.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#12" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 85.0
-margin_top = 35.0
-margin_right = 100.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot13" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 90.0
+margin_top = 18.0
+margin_right = 105.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#13" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 105.0
-margin_top = 35.0
-margin_right = 120.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot14" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 108.0
+margin_top = 18.0
+margin_right = 123.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#14" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 125.0
-margin_top = 35.0
-margin_right = 140.0
-margin_bottom = 50.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot15" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_top = 36.0
+margin_right = 15.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#15" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 5.0
-margin_top = 55.0
-margin_right = 20.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot16" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 18.0
+margin_top = 36.0
+margin_right = 33.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#16" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 25.0
-margin_top = 55.0
-margin_right = 40.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot17" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 51.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#17" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 45.0
-margin_top = 55.0
-margin_right = 60.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot18" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 54.0
+margin_top = 36.0
+margin_right = 69.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#18" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 65.0
-margin_top = 55.0
-margin_right = 80.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot19" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 72.0
+margin_top = 36.0
+margin_right = 87.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#19" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 85.0
-margin_top = 55.0
-margin_right = 100.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot20" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 90.0
+margin_top = 36.0
+margin_right = 105.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
-[node name="Item#20" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 105.0
-margin_top = 55.0
-margin_right = 120.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Item#21" type="ColorRect" parent="InventoryPopup/Items"]
-margin_left = 125.0
-margin_top = 55.0
-margin_right = 140.0
-margin_bottom = 70.0
-color = Color( 0.101563, 0.0944214, 0.0944214, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Slot21" type="Panel" parent="InventoryPopup/Items/GridContainer"]
+margin_left = 108.0
+margin_top = 36.0
+margin_right = 123.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 15, 15 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="General" type="ColorRect" parent="InventoryPopup"]
 margin_left = 10.0
@@ -431,6 +386,9 @@ margin_top = 10.0
 margin_right = 120.0
 margin_bottom = 85.0
 color = Color( 0, 0, 0, 0.666667 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="InventoryPopup/General"]
 margin_left = 5.0
@@ -667,15 +625,15 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="QuestObjects"]
 position = Vector2( 9, 10 )
-texture = ExtResource( 19 )
+texture = ExtResource( 11 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 16, 16 )
+region_rect = Rect2( 48, 0, 16, 16 )
 
 [node name="HealthPotions" type="ColorRect" parent="."]
 visible = false
-margin_left = 243.0
+margin_left = 281.0
 margin_top = 158.0
-margin_right = 279.0
+margin_right = 317.0
 margin_bottom = 178.0
 color = Color( 0, 0, 0, 0.627451 )
 script = ExtResource( 12 )
