@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/SaveLoadGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Entities/Buildings/house1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Entities/NPCs/Merchant/Merchant.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Entities/Objects/QuestItems/packed_meal.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Entities/Objects/Potions/Potion.tscn" type="PackedScene" id=13]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -45,13 +46,23 @@ position = Vector2( 55.8609, 72.1646 )
 position = Vector2( 210.722, 70.2406 )
 
 [node name="Merchant_box" parent="." instance=ExtResource( 12 )]
-position = Vector2( 158.745, 159.099 )
+position = Vector2( 98.5838, 160.989 )
 
 [node name="Merchant_box2" parent="." instance=ExtResource( 12 )]
 position = Vector2( 97.5233, 141.488 )
 
 [node name="Merchant_box3" parent="." instance=ExtResource( 12 )]
-position = Vector2( 117.733, 115.258 )
+position = Vector2( 97.2593, 121.243 )
 
 [node name="Necklace" parent="." instance=ExtResource( 6 )]
 position = Vector2( 18.8775, 103.826 )
+
+[node name="Potion" parent="." instance=ExtResource( 13 )]
+position = Vector2( 120.952, 125.992 )
+
+[node name="Potion2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 120.952, 143.631 )
+
+[node name="Potion3" parent="." instance=ExtResource( 13 )]
+position = Vector2( 121.267, 165.05 )
+type = 1

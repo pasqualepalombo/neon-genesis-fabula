@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/GUI/inventory_slot_ninePatchRect.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scenes/GUI/GUI_ninePatchRect.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/GUI/DialoguePopup.gd" type="Script" id=5]
@@ -62,10 +61,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 18, 19 )
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 6 )
@@ -203,10 +198,10 @@ patch_margin_right = 5
 patch_margin_bottom = 5
 
 [node name="Label" type="Label" parent="InventoryPopup/Items"]
-margin_left = 10.3514
-margin_top = -1.78381
-margin_right = 50.3514
-margin_bottom = 12.2162
+margin_left = 10.0
+margin_top = -3.681
+margin_right = 50.0
+margin_bottom = 10.319
 custom_fonts/font = ExtResource( 3 )
 text = "ITEM(s)"
 
@@ -222,186 +217,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Slot1" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_right = 15.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot2" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 18.0
-margin_right = 33.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot3" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 36.0
-margin_right = 51.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot4" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 54.0
-margin_right = 69.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot5" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 72.0
-margin_right = 87.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot6" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 90.0
-margin_right = 105.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot7" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 108.0
-margin_right = 123.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot8" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_top = 18.0
-margin_right = 15.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot9" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 18.0
-margin_top = 18.0
-margin_right = 33.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot10" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 36.0
-margin_top = 18.0
-margin_right = 51.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot11" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 54.0
-margin_top = 18.0
-margin_right = 69.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot12" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 72.0
-margin_top = 18.0
-margin_right = 87.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot13" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 90.0
-margin_top = 18.0
-margin_right = 105.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot14" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 108.0
-margin_top = 18.0
-margin_right = 123.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot15" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_top = 36.0
-margin_right = 15.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot16" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 18.0
-margin_top = 36.0
-margin_right = 33.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot17" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 51.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot18" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 54.0
-margin_top = 36.0
-margin_right = 69.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot19" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 72.0
-margin_top = 36.0
-margin_right = 87.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot20" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 90.0
-margin_top = 36.0
-margin_right = 105.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="Slot21" type="Panel" parent="InventoryPopup/Items/GridContainer"]
-margin_left = 108.0
-margin_top = 36.0
-margin_right = 123.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 15, 15 )
-custom_styles/panel = SubResource( 3 )
-
-[node name="General" type="ColorRect" parent="InventoryPopup"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 120.0
-margin_bottom = 85.0
-color = Color( 0, 0, 0, 0.666667 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="General" type="NinePatchRect" parent="InventoryPopup"]
+margin_left = 9.0
+margin_top = 5.0
+margin_right = 128.0
+margin_bottom = 66.0
+texture = ExtResource( 4 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
 [node name="Label" type="Label" parent="InventoryPopup/General"]
-margin_left = 5.0
-margin_right = 45.0
-margin_bottom = 14.0
+margin_left = 10.0
+margin_top = -3.5
+margin_right = 50.0
+margin_bottom = 10.5
 custom_fonts/font = ExtResource( 3 )
 text = "GENERAL"
 
 [node name="Coins" type="RichTextLabel" parent="InventoryPopup/General"]
-margin_left = 5.0
-margin_top = 15.0
-margin_right = 84.0
-margin_bottom = 28.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 89.0
+margin_bottom = 23.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Coins: 647"
 __meta__ = {
@@ -409,51 +248,53 @@ __meta__ = {
 }
 
 [node name="Reputation" type="RichTextLabel" parent="InventoryPopup/General"]
-margin_left = 5.0
-margin_top = 25.0
-margin_right = 97.0
-margin_bottom = 38.0
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 102.0
+margin_bottom = 33.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Reputation: Good"
 
 [node name="Level" type="RichTextLabel" parent="InventoryPopup/General"]
-margin_left = 5.0
-margin_top = 35.0
-margin_right = 45.0
-margin_bottom = 48.0
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 50.0
+margin_bottom = 43.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Level: 15"
 
 [node name="Experience" type="RichTextLabel" parent="InventoryPopup/General"]
-margin_left = 5.0
-margin_top = 45.0
-margin_right = 107.0
-margin_bottom = 58.0
+margin_left = 10.0
+margin_top = 40.0
+margin_right = 112.0
+margin_bottom = 53.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Experience: 1584/1975"
 
-[node name="Statistics" type="ColorRect" parent="InventoryPopup"]
-margin_left = 10.0
+[node name="Statistics" type="NinePatchRect" parent="InventoryPopup"]
+margin_left = 9.0
 margin_top = 95.0
-margin_right = 140.0
+margin_right = 139.0
 margin_bottom = 170.0
-color = Color( 0, 0, 0, 0.666667 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 4 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
 [node name="Label" type="Label" parent="InventoryPopup/Statistics"]
-margin_left = 5.0
-margin_right = 45.0
-margin_bottom = 14.0
+margin_left = 10.0
+margin_top = -3.636
+margin_right = 62.0
+margin_bottom = 10.364
 custom_fonts/font = ExtResource( 3 )
 text = "STATISTICS"
 
 [node name="Health" type="RichTextLabel" parent="InventoryPopup/Statistics"]
-margin_left = 5.0
-margin_top = 15.0
-margin_right = 119.0
-margin_bottom = 28.0
+margin_left = 11.0
+margin_top = 10.0
+margin_right = 125.0
+margin_bottom = 23.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Maximum Health: 120"
 __meta__ = {
@@ -461,18 +302,18 @@ __meta__ = {
 }
 
 [node name="Reputation" type="RichTextLabel" parent="InventoryPopup/Statistics"]
-margin_left = 5.0
-margin_top = 25.0
-margin_right = 109.0
-margin_bottom = 38.0
+margin_left = 11.0
+margin_top = 20.0
+margin_right = 115.0
+margin_bottom = 33.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Base Attack: 20"
 
 [node name="Level" type="RichTextLabel" parent="InventoryPopup/Statistics"]
-margin_left = 5.0
-margin_top = 35.0
-margin_right = 117.0
-margin_bottom = 48.0
+margin_left = 11.0
+margin_top = 30.0
+margin_right = 123.0
+margin_bottom = 43.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Full Attack: 50"
 
@@ -627,7 +468,7 @@ __meta__ = {
 position = Vector2( 9, 10 )
 texture = ExtResource( 11 )
 region_enabled = true
-region_rect = Rect2( 48, 0, 16, 16 )
+region_rect = Rect2( 16, 0, 16, 16 )
 
 [node name="HealthPotions" type="ColorRect" parent="."]
 visible = false

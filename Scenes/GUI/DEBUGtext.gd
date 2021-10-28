@@ -16,7 +16,8 @@ func _input(event):
 			writeQuestList()
 			
 func writeQuestList():
-	bbcode_text = "Medicine Quest: " + str(QuestsList.MedicineQuest) 
+	bbcode_text = "Quest progression: "
+	bbcode_text += "\nMedicine Quest: " + str(QuestsList.MedicineQuest) 
 	bbcode_text += "\nMerchant Quest: " + str(QuestsList.MeerchantQuest)
 	bbcode_text += "\nDoctor Quest: " + str(QuestsList.DoctorQuest)
 	bbcode_text += "\nDealer Quest: " + str(QuestsList.DealerQuest)

@@ -16,6 +16,7 @@ func _ready():
 		$House/Mother.from_dictionary(data.mother)
 		$DoctorHouse/Doctor.from_dictionary(data.doctor)
 		$Merchant.from_dictionary(data.merchant)
+		ItemHandler.temporary_items = data.inventory
 
 
 func save():
@@ -25,6 +26,7 @@ func save():
 		"mother" : $House/Mother.to_dictionary(),
 		"doctor" : $DoctorHouse/Doctor.to_dictionary(),
 		"merchant" : $Merchant.to_dictionary(),
+		"inventory" : ItemHandler.temporary_items
 	}
 	
 	var file = File.new()

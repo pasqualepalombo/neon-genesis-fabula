@@ -13,6 +13,12 @@ func load_all_stats():
 	$General/Reputation.bbcode_text = "Reputation: " + str(player.reputation)
 	$General/Level.bbcode_text = "Level: " + str(player.level)
 	$General/Experience.bbcode_text = "Experience: " + str(player.experience) + "/" + str(player.xp_next_level)
+	var generic_slot = preload ("res://Scenes/GUI/Slot.tscn")
+	for i in ItemHandler.temporary_items:
+		var slot = generic_slot.instance()
+		slot.change_properties(i)
+		$Items/GridContainer.add_child(slot)
+		
 
 
 func _input(_event):
@@ -34,3 +40,7 @@ func _input(_event):
 			get_tree().paused = false
 			player.set_process_input(true)
 			hide()
+
+
+func _ready():
+	pass

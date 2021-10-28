@@ -167,8 +167,12 @@ func add_xp(value):
 
 func add_potion(type):
 	if type == Potion.HEALTH:
+		ItemHandler.add_to_all_items_dictionary("health_potion", 1, 0, 0)
+		ItemHandler.add_to_temporary_items_dictionary("health_potion", 1, 0, 0)
 		health_potions = health_potions + 1
 	else:
+		ItemHandler.add_to_all_items_dictionary("mana_potion", 1, 16, 0)
+		ItemHandler.add_to_temporary_items_dictionary("mana_potion", 1, 16, 0)
 		mana_potions = mana_potions + 1
 	emit_signal("player_stats_changed", self)
 
