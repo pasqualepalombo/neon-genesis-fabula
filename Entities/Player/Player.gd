@@ -14,7 +14,7 @@ signal player_level_up()
 # Connecter to the GUI/QuestObject
 signal player_additem_to_gui()
 
-# Player general variable for movements and extra
+# Player stats
 var speed = 75
 var health = 100
 var health_max = 100
@@ -28,7 +28,11 @@ var experience = 0
 var level = 1
 var xp_next_level = 100
 var attack_damage = 30
+
+# Player extra
 enum Potion { HEALTH, MANA }
+
+# Player general variable for movements
 var health_potions = 0 #CHECK
 var mana_potions = 0 #CHECK
 # Memorizza l'ultima direzione presa.

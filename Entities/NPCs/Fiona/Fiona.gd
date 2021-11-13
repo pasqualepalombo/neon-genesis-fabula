@@ -31,7 +31,7 @@ func talk(answer = ""):
 					dialogue_state = 1
 					# Show dialogue popup
 					dialoguePopup.dialogue = "Hello adventurer! I lost my necklace, can you find it for me?"
-					dialoguePopup.answers = "[E] Yes  [Shift] No"
+					dialoguePopup.answers = Settings.yesKey + " Yes  " + Settings.nokey + " No"
 					dialoguePopup.open()
 				1:
 					match answer:
@@ -40,14 +40,14 @@ func talk(answer = ""):
 							dialogue_state = 2
 							# Show dialogue popup
 							dialoguePopup.dialogue = "Thank you!"
-							dialoguePopup.answers = "[E] Bye"
+							dialoguePopup.answers = Settings.yesKey + " Bye"
 							dialoguePopup.open()
 						"B":
 							# Update dialogue tree state
 							dialogue_state = 3
 							# Show dialogue popup
 							dialoguePopup.dialogue = "If you change your mind, you'll find me here."
-							dialoguePopup.answers = "[E] Bye"
+							dialoguePopup.answers = Settings.yesKey + " Bye"
 							dialoguePopup.open()
 				2:
 					# Update dialogue tree state
@@ -72,9 +72,9 @@ func talk(answer = ""):
 					# Show dialogue popup
 					dialoguePopup.dialogue = "Did you find my necklace?"
 					if necklace_found:
-						dialoguePopup.answers = "[E] Yes  [Shift] No"
+						dialoguePopup.answers = Settings.yesKey + " Yes  " + Settings.nokey + " No"
 					else:
-						dialoguePopup.answers = "[E] No"
+						dialoguePopup.answers = Settings.yesKey + " No"
 					dialoguePopup.open()
 				1:
 					if necklace_found and answer == "A":
@@ -82,14 +82,14 @@ func talk(answer = ""):
 						dialogue_state = 2
 						# Show dialogue popup
 						dialoguePopup.dialogue = "You're my hero! Please take some money as a sign of my gratitude!"
-						dialoguePopup.answers = "[E] Thanks"
+						dialoguePopup.answers = Settings.yesKey + " Thanks"
 						dialoguePopup.open()
 					else:
 						# Update dialogue tree state
 						dialogue_state = 3
 						# Show dialogue popup
 						dialoguePopup.dialogue = "Please, find it!"
-						dialoguePopup.answers = "[E] I will!"
+						dialoguePopup.answers = Settings.yesKey + " I will!"
 						dialoguePopup.open()
 				2:
 					# Update dialogue tree state
@@ -119,7 +119,7 @@ func talk(answer = ""):
 					dialogue_state = 1
 					# Show dialogue popup
 					dialoguePopup.dialogue = "Thanks again for your help!"
-					dialoguePopup.answers = "[E] Bye"
+					dialoguePopup.answers = Settings.yesKey + " Bye"
 					dialoguePopup.open()
 				1:
 					# Update dialogue tree state

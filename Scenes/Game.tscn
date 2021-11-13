@@ -46,13 +46,31 @@ position = Vector2( 55.8609, 72.1646 )
 position = Vector2( 210.722, 70.2406 )
 
 [node name="Merchant_box" parent="." instance=ExtResource( 12 )]
-position = Vector2( 98.5838, 160.989 )
+position = Vector2( 91.9096, 130.955 )
 
 [node name="Merchant_box2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 97.5233, 141.488 )
+position = Vector2( 92.1839, 125.136 )
 
 [node name="Merchant_box3" parent="." instance=ExtResource( 12 )]
-position = Vector2( 97.2593, 121.243 )
+position = Vector2( 92.2537, 117.906 )
+
+[node name="Merchant_box4" parent="." instance=ExtResource( 12 )]
+position = Vector2( 58.8827, 136.26 )
+
+[node name="Merchant_box6" parent="." instance=ExtResource( 12 )]
+position = Vector2( 58.549, 150.943 )
+
+[node name="Merchant_box7" parent="." instance=ExtResource( 12 )]
+position = Vector2( 26.5128, 116.905 )
+
+[node name="Merchant_box8" parent="." instance=ExtResource( 12 )]
+position = Vector2( 26.8465, 131.922 )
+
+[node name="Merchant_box9" parent="." instance=ExtResource( 12 )]
+position = Vector2( 26.1791, 146.939 )
+
+[node name="Merchant_box5" parent="." instance=ExtResource( 12 )]
+position = Vector2( 57.8815, 118.24 )
 
 [node name="Necklace" parent="." instance=ExtResource( 6 )]
 position = Vector2( 18.8775, 103.826 )

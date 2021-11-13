@@ -6,104 +6,191 @@ var dialogue_state = 0
 var boxes_taken = 0
 var dialoguePopup
 var player
-enum Potion { HEALTH, MANA }
 
 
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
-	QuestsList.MeerchantQuest = quest_status
+	QuestsList.MerchantQuest = quest_status
 
 
 func talk(answer = ""):
-	# Set Merchant's animation to "talk"
 	$AnimatedSprite.play("talk")
-	# Set dialoguePopup npc to Merchant
 	dialoguePopup.npc = self
 	dialoguePopup.npc_name = "Merchant"
 	
-	# Show the current dialogue
 	match quest_status:
 		QuestStatus.NOT_STARTED:
 			match dialogue_state:
 				0:
-					# Update dialogue tree state
 					dialogue_state = 1
-					# Show dialogue popup
 					dialoguePopup.dialogue = "What a wonderful day. Tell me."
-					dialoguePopup.answers = "[E]Do you need some help?  [Shift] Nothing"
+					dialoguePopup.answers = Settings.yesKey + " Do you need some help?  " + Settings.nokey + " Nothing"
 					dialoguePopup.open()
 				1:
 					match answer:
 						"A":
-							# Show dialogue popup
 							dialoguePopup.dialogue = "Uhm. Let me think..."
-							# Update dialogue tree state: wanna buy but I don't have the money
 							dialogue_state = 2
-							dialoguePopup.answers = "[E] ... "
+							dialoguePopup.answers = Settings.yesKey + " ... "
 							dialoguePopup.open()
 						"B":
-							# Update dialogue tree state
 							dialogue_state = 99
-							# Show dialogue popup
 							dialoguePopup.dialogue = "So... Good bye, I think."
-							dialoguePopup.answers = "[E] Bye"
+							dialoguePopup.answers = Settings.yesKey + " Bye"
 							dialoguePopup.open()
 				2:
-					# Show dialogue popup
 					dialoguePopup.dialogue = "I'm running out of packed meals. Go to the warehouse and take three of them. I'll pay you 50 bucks."
-					# Update dialogue tree state: wanna buy but I don't have the money
-					dialogue_state = 3
-					dialoguePopup.answers = "[E] Gotcha. "
-					dialoguePopup.open()
+					if boxes_taken < 3:
+						dialogue_state = 3
+						dialoguePopup.answers = Settings.yesKey + "Gotcha. "
+						dialoguePopup.open()
+					if boxes_taken == 3:
+						dialogue_state = 4
+						dialoguePopup.answers = Settings.yesKey + "Already taken. I see the future. " + Settings.nokey + " Okay."
+						dialoguePopup.open()
+					if boxes_taken >= 3:
+						dialogue_state = 5
+						dialoguePopup.answers = Settings.yesKey + "Already taken. I see the future. " + Settings.nokey + " Okay."
+						dialoguePopup.open()
 				3:
-					# Update dialogue tree state
 					dialogue_state = 0
 					quest_status = QuestStatus.STARTED
-					QuestsList.MeerchantQuest = quest_status
+					QuestsList.MerchantQuest = quest_status
 					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Merchant's animation to "idle"
 					$AnimatedSprite.play("idle")
-				99:
-					# Update dialogue tree state
-					dialogue_state = 0
-					# Close dialogue popup
-					dialoguePopup.close()
-					# Set Merchant's animation to "idle"
-					$AnimatedSprite.play("idle")
-		QuestStatus.STARTED:
-			match dialogue_state:
-				0:
-					#TODO se ha le casse deve fare altro, sennò parla e basta.
-					# Update dialogue tree state
-					dialogue_state = 99
-					# Show dialogue popup
-					dialoguePopup.dialogue = "The boxes. In the warehouse."
-					dialoguePopup.answers = "[E] Yeah, right."
+				4:
+					match answer:
+						"A":
+							dialoguePopup.dialogue = "You're weird kiddo, but usefull. Here's 50 bucks. As promised."
+							dialogue_state = 98
+							dialoguePopup.answers = Settings.yesKey + " Thanks! "
+							dialoguePopup.open()
+						"B":
+							dialogue_state = 0
+							dialoguePopup.close()
+							$AnimatedSprite.play("idle")
+				5:
+					match answer:
+							"A":
+								dialogue_state = 6
+								dialoguePopup.dialogue = "I said three. However I'll return the other boxes. "
+								dialoguePopup.answers = Settings.yesKey + " ..."
+								dialoguePopup.open()
+							"B":
+								dialogue_state = 99
+								dialoguePopup.dialogue = "So? Hurry up."
+								dialoguePopup.answers = Settings.yesKey + " Bye"
+								dialoguePopup.open()
+				6:
+					dialoguePopup.dialogue = "You're weird kiddo, but usefull. Here's 50 bucks. As promised."
+					dialogue_state = 98
+					dialoguePopup.answers = Settings.yesKey + " Thanks! "
 					dialoguePopup.open()
-				99:
-					# Update dialogue tree state
+				98:
 					dialogue_state = 0
-					# Close dialogue popup
+					quest_status = QuestStatus.COMPLETED
+					QuestsList.MerchantQuest = quest_status
 					dialoguePopup.close()
-					# Set Merchant's animation to "idle"
+					$AnimatedSprite.play("idle") 
+					player.add_coins(+50)
+					player.add_xp(100)
+					yield(get_tree().create_timer(0.5), "timeout") 
+					# TODO rimuovere le casse dall'inventario
+				99:
+					dialogue_state = 0
+					dialoguePopup.close()
 					$AnimatedSprite.play("idle")
+	
+		QuestStatus.STARTED:
+			if boxes_taken <3:
+				match dialogue_state:
+					0:
+						dialogue_state = 99
+						dialoguePopup.dialogue = "The boxes. In the warehouse."
+						dialoguePopup.answers = Settings.yesKey + " Yeah, right."
+						dialoguePopup.open()
+					99:
+						dialogue_state = 0
+						dialoguePopup.close()
+						$AnimatedSprite.play("idle")
+			if boxes_taken == 3:
+				match dialogue_state:
+					0:
+						dialogue_state = 1
+						dialoguePopup.dialogue = "Okay kiddo, have you got my packed meals?"
+						dialoguePopup.answers = Settings.yesKey + " Yes, mister. " + Settings.nokey + " Not yet"
+						dialoguePopup.open()
+					1:
+						match answer:
+							"A":
+								dialoguePopup.dialogue = "Great. Good job kiddo. Here's 50 bucks. As promised."
+								dialogue_state = 98
+								dialoguePopup.answers = Settings.yesKey + " Thanks! "
+								dialoguePopup.open()
+							"B":
+								dialogue_state = 99
+								dialoguePopup.dialogue = "So? Hurry up."
+								dialoguePopup.answers = Settings.yesKey + " Bye"
+								dialoguePopup.open()
+					98:
+						dialogue_state = 0
+						quest_status = QuestStatus.COMPLETED
+						QuestsList.MerchantQuest = quest_status
+						dialoguePopup.close()
+						$AnimatedSprite.play("idle") 
+						player.add_coins(+50)
+						player.add_xp(100)
+						yield(get_tree().create_timer(0.5), "timeout") 
+						# TODO rimuovere le casse dall'inventario
+					99:
+						dialogue_state = 0
+						dialoguePopup.close()
+						$AnimatedSprite.play("idle")
+			if boxes_taken >= 3:
+				match dialogue_state:
+					0:
+						dialogue_state = 1
+						dialoguePopup.dialogue = "Okay kiddo, have you got my packed meals?"
+						dialoguePopup.answers = Settings.yesKey + " Yes, mister. " + Settings.nokey + " Not yet"
+						dialoguePopup.open()
+					1:
+						match answer:
+							"A":
+								dialogue_state = 98
+								dialoguePopup.dialogue = "I said three. However I'll return the other boxes. "
+								dialoguePopup.answers = Settings.yesKey + " ..."
+								dialoguePopup.open()
+							"B":
+								dialogue_state = 99
+								dialoguePopup.dialogue = "So? Hurry up."
+								dialoguePopup.answers = Settings.yesKey + " Bye"
+								dialoguePopup.open()
+					98:
+						dialogue_state = 0
+						quest_status = QuestStatus.COMPLETED
+						QuestsList.MerchantQuest = quest_status
+						dialoguePopup.close()
+						$AnimatedSprite.play("idle") 
+						player.add_coins(+50)
+						player.add_xp(100)
+						yield(get_tree().create_timer(0.5), "timeout") 
+						# TODO rimuovere le casse in più oltre quelle della quest
+					99:
+						dialogue_state = 0
+						dialoguePopup.close()
+						$AnimatedSprite.play("idle")
 		QuestStatus.COMPLETED:
 			match dialogue_state:
 				0:
-					# Update dialogue tree state
 					dialogue_state = 1
-					# Show dialogue popup
-					dialoguePopup.dialogue = "Comeback for buying!"
-					dialoguePopup.answers = "[E] Bye"
+					dialoguePopup.dialogue = "If I need help, I'll call you. Bye."
+					dialoguePopup.answers = Settings.yesKey + " Bye"
 					dialoguePopup.open()
 				1:
-					# Update dialogue tree state
 					dialogue_state = 0
-					# Close dialogue popup
 					dialoguePopup.close()
-					# Set Merchant's animation to "idle"
 					$AnimatedSprite.play("idle")
 
 
@@ -117,4 +204,4 @@ func to_dictionary():
 func from_dictionary(data):
 	boxes_taken = data.boxes_taken
 	quest_status = int(data.quest_status)
-	QuestsList.MeerchantQuest = quest_status
+	QuestsList.MerchantQuest = quest_status

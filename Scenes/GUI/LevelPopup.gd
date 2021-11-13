@@ -7,6 +7,8 @@ func _ready():
 		print("Signal Connection Error: PLAYER->GUI(LevelPopoup) player_level_up")
 	player = get_tree().root.get_node("Game/Player")
 	set_process_input(false)
+	$ColorRect/Label2.text = Settings.yesKey
+	$ColorRect/Label3.text = Settings.nokey
 
 
 func player_level_up():
