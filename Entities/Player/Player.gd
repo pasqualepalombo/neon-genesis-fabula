@@ -1,4 +1,7 @@
-#TODO When player sleep, during the Sleep Animation, He can moves around
+#BUG #TODO When player sleep, during the Sleep Animation, He can moves around
+#BUG Quando il player apre l'inventario, poi preme menu e preme il tasto salva
+# o riprendi, rimane l'inventario aperto ma il player si può muovere, non comporta
+# problemi ma prima o poi bisogna sistemarlo
 
 extends KinematicBody2D
 
@@ -11,28 +14,28 @@ signal player_level_up()
 # Connecter to the GUI/QuestObject
 signal player_additem_to_gui()
 
-# Player general variable for movements
-export var speed = 75
+# Player general variable for movements and extra
+var speed = 75
 var health = 100
 var health_max = 100
 var health_regeneration = 1
 var mana = 100
 var mana_max = 100
 var mana_regeneration = 2
-var coins = 100
+var coins = 0
 var reputation = 0
 var experience = 0
 var level = 1
 var xp_next_level = 100
+var attack_damage = 30
 enum Potion { HEALTH, MANA }
-var health_potions = 0
-var mana_potions = 0
-# It memorize the last direction before the input stops.
+var health_potions = 0 #CHECK
+var mana_potions = 0 #CHECK
+# Memorizza l'ultima direzione presa.
 var last_direction = Vector2(0,1)
 # Attack variables
 var attack_cooldown_time = 1000
 var next_attack_time = 0
-var attack_damage = 30
 var attack_playing = false
 
 
@@ -167,12 +170,12 @@ func add_xp(value):
 
 func add_potion(type):
 	if type == Potion.HEALTH:
-		ItemHandler.add_to_all_items_dictionary("health_potion", 1, 0, 0)
-		ItemHandler.add_to_temporary_items_dictionary("health_potion", 1, 0, 0)
+		ItemHandler.add_to_all_items_dictionary("Health Potion", 1, 0, 0)
+		ItemHandler.add_to_temporary_items_dictionary("Health Potion", 1, 0, 0)
 		health_potions = health_potions + 1
 	else:
-		ItemHandler.add_to_all_items_dictionary("mana_potion", 1, 16, 0)
-		ItemHandler.add_to_temporary_items_dictionary("mana_potion", 1, 16, 0)
+		ItemHandler.add_to_all_items_dictionary("Mana Potion", 1, 16, 0)
+		ItemHandler.add_to_temporary_items_dictionary("Mana Potion", 1, 16, 0)
 		mana_potions = mana_potions + 1
 	emit_signal("player_stats_changed", self)
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/GUI/items.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/GUI/inventory_slot_ninePatchRect.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/GUI/Slot.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scenes/GUI/inventory_slot_selected_ninePatchRect.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -15,6 +16,15 @@ margin_bottom = 15.0
 rect_min_size = Vector2( 15, 15 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedSlot" type="NinePatchRect" parent="."]
+visible = false
+margin_right = 15.0
+margin_bottom = 15.0
+texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -34,3 +44,6 @@ margin_right = 16.625
 margin_bottom = 18.5625
 custom_fonts/font = ExtResource( 4 )
 text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}

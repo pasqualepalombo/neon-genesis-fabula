@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 ItemHandler="*res://Scripts/item_handler.gd"
 QuestsList="*res://Scripts/quests_list.gd"
+PlayerStats="*res://Scripts/player_stats.gd"
 
 [display]
 

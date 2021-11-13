@@ -41,8 +41,8 @@ func talk(answer = ""):
 					match answer:
 						"A":
 							# Show dialogue popup
-							dialoguePopup.dialogue = "Sure. It costs 20 bucks."
-							if player.coins >= 20:
+							dialoguePopup.dialogue = "Sure. It costs 100 bucks."
+							if player.coins >= 100:
 								# Update dialogue tree state: wanna buy and I have the money
 								dialogue_state = 2
 								dialoguePopup.answers = "[E] Deal. [Shift] I'll be right back"
@@ -72,7 +72,7 @@ func talk(answer = ""):
 							# Set Doctor's animation to "idle"
 							$AnimatedSprite.play("idle")
 							# Add potion and XP to the player. 
-							player.add_coins(-20)
+							player.add_coins(-100)
 							player.add_xp(100)
 							player.add_questitem_in_GUI(0,0,"notext")
 							yield(get_tree().create_timer(0.5), "timeout") #I added a little delay in case the level advancement panel appears.
