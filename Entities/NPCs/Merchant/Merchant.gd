@@ -1,8 +1,9 @@
 extends StaticBody2D
 
-enum QuestStatus {NOT_STARTED, STARTED, COMPLETED }
+enum QuestStatus {NOT_STARTED, STARTED, COMPLETED, FAILED }
 var quest_status = QuestStatus.NOT_STARTED
 var dialogue_state = 0
+#TODO fare come il dealer e contare le casse con i temporary items
 var boxes_taken = 0
 var dialoguePopup
 var player
@@ -21,6 +22,8 @@ func talk(answer = ""):
 	
 	match quest_status:
 		QuestStatus.NOT_STARTED:
+			#TODO se non ci sono più casse (o cmq meno di tre) deve dire tipo "che giornataccia, non c'è cibo. ciao"
+			# e non può proprio farti partire la quest e la mette fallita
 			match dialogue_state:
 				0:
 					dialogue_state = 1
@@ -104,6 +107,8 @@ func talk(answer = ""):
 					$AnimatedSprite.play("idle")
 	
 		QuestStatus.STARTED:
+			#TODO se nel frattempo le casse sono finite allora ti dirà "grazie lo stesso, ma qualcuno ha rubato
+			# nel magazzino e la mette fallita
 			if boxes_taken <3:
 				match dialogue_state:
 					0:

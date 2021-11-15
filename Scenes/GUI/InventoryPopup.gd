@@ -71,6 +71,11 @@ func _input(_event):
 
 
 func inventory_navigation(position):
+	# Navigation Mechanics
+	# se ho degli item, l'istem evidenziato è sempre il primo (grazie a item_navigation(0) di load_all_stats. 
+	# Dopo di che ogni volta che ci si sposta, si chiama focus on me per disattivare l'attuale, si calcola quello 
+	# nuovo e si richiama il focus sull'attuale. La scelta è delimitata da 0 e item_counter-1.
+	# TODO per ora funziona con destra/sinistra, aggiungere +-7 quando si fa su e giu.
 	if item_counter > 0:
 		selected_menu += position
 		if selected_menu < 0:
@@ -89,6 +94,9 @@ func inventory_navigation(position):
 			selected_slot = $Items/GridContainer.get_child(selected_menu)
 			selected_slot.focus_on_me()
 		$Items/ItemName.text = selected_slot.get_slot_name()
+	else: 
+		$Items/ItemName.text = ""
+
 
 func _ready():
 	pass

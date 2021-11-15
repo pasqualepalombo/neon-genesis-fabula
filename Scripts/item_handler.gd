@@ -1,7 +1,7 @@
 extends Node
 
 var all_items = {
-	"Health Potion" : [2,0,0], "Mana Potion" : [3,16,0], 
+	"Health Potion" : [0,0,0], "Mana Potion" : [0,16,0], 
 	"Mom Medicine" : [0, 48, 0], "Packed Meal" : [0,64,0]
 	}
 
