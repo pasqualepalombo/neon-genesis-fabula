@@ -76,11 +76,9 @@ func talk(answer = ""):
 					QuestsList.MedicineQuest = quest_status
 					dialoguePopup.close()
 					$AnimatedSprite.play("idle")
-					yield(get_tree().create_timer(0.5), "timeout")
 					player.add_xp(150)
 					player.add_reputation(10)
-					#TODO 
-					#player.add_potion(Potion.HEALTH)
+					yield(get_tree().create_timer(0.5), "timeout") 
 				3:
 					dialogue_state = 0
 					dialoguePopup.close()

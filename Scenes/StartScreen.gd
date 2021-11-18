@@ -32,6 +32,7 @@ func _input(_event):
 		match selected_menu:
 			0:
 				# New game
+				reset_game_stats()
 				if(get_tree().change_scene("res://Scenes/Game.tscn")):
 					print("Errore nel caricare il gioco da menu principale")
 			1:
@@ -44,3 +45,7 @@ func _input(_event):
 			2:
 				# Quit game
 				get_tree().quit()
+
+
+func reset_game_stats():
+	ItemHandler.temporary_items = {}

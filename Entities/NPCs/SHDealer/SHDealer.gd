@@ -28,7 +28,7 @@ func talk(answer = ""):
 					dialoguePopup.open()
 				1:
 					dialogue_state = 2
-					dialoguePopup.dialogue = "Have you saw those piled boxes? I'll pay you 10 bucks each. We have a Deal?"
+					dialoguePopup.dialogue = "Have you seen those piled boxes? I'll pay you 10 bucks each. We have a Deal?"
 					dialoguePopup.answers = Settings.yesKey + " Deal. Prepare the cash." + Settings.nokey + " Is legal stuff?"
 					dialoguePopup.open()
 				2:
@@ -65,27 +65,36 @@ func talk(answer = ""):
 					item_counter = variables[0]
 			match dialogue_state:
 				0:
-					if item_counter == 0:
-						dialogue_state = 99
-						dialoguePopup.dialogue = "C'mon. I don't have all day. Or maybe yes."
-						dialoguePopup.answers = Settings.yesKey + " Wait."
-						dialoguePopup.open()
-					if item_counter == 1:
+					if (boxes_taken + item_counter) == 12:
 						dialogue_state = 1
-						dialoguePopup.dialogue = "Just one? Better than nothing. 10 bucks for you."
-						dialoguePopup.answers = Settings.yesKey + " Thanks." + Settings.nokey + " Wait."
-						dialoguePopup.open()
-					if item_counter > 1:
-						dialogue_state = 1
-						dialoguePopup.dialogue = "Oh yes. " + str(item_counter) + " meals. Sounds good. " + str(item_counter*10) + " bucks."
+						dialoguePopup.dialogue = "And we're done. All the " + str(item_counter) + " meals. Here you are, " + str(item_counter*10) + " bucks."
 						dialoguePopup.answers = Settings.yesKey + " Here you are." + Settings.nokey + " Wait."
 						dialoguePopup.open()
+					else:
+						if item_counter == 0:
+							dialogue_state = 99
+							dialoguePopup.dialogue = "C'mon. I don't have all day. Or maybe yes."
+							dialoguePopup.answers = Settings.yesKey + " Wait."
+							dialoguePopup.open()
+						if item_counter == 1:
+							dialogue_state = 1
+							dialoguePopup.dialogue = "Just one? Better than nothing. 10 bucks for you."
+							dialoguePopup.answers = Settings.yesKey + " Thanks." + Settings.nokey + " Wait."
+							dialoguePopup.open()
+						if item_counter > 1:
+							dialogue_state = 1
+							dialoguePopup.dialogue = "Oh yes. " + str(item_counter) + " meals. Sounds good. " + str(item_counter*10) + " bucks."
+							dialoguePopup.answers = Settings.yesKey + " Here you are." + Settings.nokey + " Wait."
+							dialoguePopup.open()
 				1:
 					match answer:
 						"A":
 							dialogue_state = 0
 							boxes_taken += item_counter
-							remove_meals(item_counter, variables)
+							if boxes_taken == 12:
+								quest_status = QuestStatus.COMPLETED
+								QuestsList.DealerQuest = quest_status
+							remove_meals()
 							player.add_coins(item_counter*10)
 							dialoguePopup.close()
 							$AnimatedSprite.play("idle")
@@ -102,9 +111,6 @@ func talk(answer = ""):
 			match dialogue_state:
 				0:
 					dialogue_state = 1
-					# Non mi arriva qui nonostante consegno 12 casse, controllare il counter
-					quest_status = QuestStatus.COMPLETED
-					QuestsList.DealerQuest = quest_status
 					dialoguePopup.dialogue = "Good job, small one. That's a pity that the meals runned out"
 					dialoguePopup.answers = Settings.yesKey + " ..."
 					dialoguePopup.open()
@@ -124,7 +130,17 @@ func talk(answer = ""):
 					dialoguePopup.close()
 					$AnimatedSprite.play("idle")
 
-func remove_meals(item_counter, variables):
-	#TODO rimuovere packed meal dai temporary item che sennò rimane comunque nell'inventario
-	variables[0] = 0
-	ItemHandler.temporary_items['Packed Meal'] = variables
+func remove_meals():
+	ItemHandler.temporary_items.erase('Packed Meal')
+
+
+func to_dictionary():
+	return {
+		"quest_status" : quest_status,
+	}
+
+
+func from_dictionary(data):
+	quest_status = int(data.quest_status)
+	QuestsList.MerchantQuest = quest_status
+

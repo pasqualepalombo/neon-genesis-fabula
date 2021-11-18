@@ -3,8 +3,6 @@ extends StaticBody2D
 enum QuestStatus {NOT_STARTED, STARTED, COMPLETED, FAILED }
 var quest_status = QuestStatus.NOT_STARTED
 var dialogue_state = 0
-#TODO fare come il dealer e contare le casse con i temporary items
-var boxes_taken = 0
 var dialoguePopup
 var player
 
@@ -43,16 +41,22 @@ func talk(answer = ""):
 							dialoguePopup.answers = Settings.yesKey + " Bye"
 							dialoguePopup.open()
 				2:
+					var item_counter = 0
+					var variables 
+					for i in ItemHandler.temporary_items.keys():
+						if str(i) == "Packed Meal":
+							variables = ItemHandler.temporary_items[str(i)]
+							item_counter = variables[0]
 					dialoguePopup.dialogue = "I'm running out of packed meals. Go to the warehouse and take three of them. I'll pay you 50 bucks."
-					if boxes_taken < 3:
+					if item_counter < 3:
 						dialogue_state = 3
 						dialoguePopup.answers = Settings.yesKey + "Gotcha. "
 						dialoguePopup.open()
-					if boxes_taken == 3:
+					if item_counter == 3:
 						dialogue_state = 4
 						dialoguePopup.answers = Settings.yesKey + "Already taken. I see the future. " + Settings.nokey + " Okay."
 						dialoguePopup.open()
-					if boxes_taken >= 3:
+					if item_counter > 3:
 						dialogue_state = 5
 						dialoguePopup.answers = Settings.yesKey + "Already taken. I see the future. " + Settings.nokey + " Okay."
 						dialoguePopup.open()
@@ -99,8 +103,8 @@ func talk(answer = ""):
 					$AnimatedSprite.play("idle") 
 					player.add_coins(+50)
 					player.add_xp(100)
+					remove_meals()
 					yield(get_tree().create_timer(0.5), "timeout") 
-					# TODO rimuovere le casse dall'inventario
 				99:
 					dialogue_state = 0
 					dialoguePopup.close()
@@ -109,7 +113,14 @@ func talk(answer = ""):
 		QuestStatus.STARTED:
 			#TODO se nel frattempo le casse sono finite allora ti dirà "grazie lo stesso, ma qualcuno ha rubato
 			# nel magazzino e la mette fallita
-			if boxes_taken <3:
+			# potrei istanzarmi il dealer e sapere se è a 12 il numero delle sue casse, o meglio, 12-3 disponibili
+			var item_counter = 0
+			var variables 
+			for i in ItemHandler.temporary_items.keys():
+				if str(i) == "Packed Meal":
+					variables = ItemHandler.temporary_items[str(i)]
+					item_counter = variables[0]
+			if item_counter <3:
 				match dialogue_state:
 					0:
 						dialogue_state = 99
@@ -120,7 +131,7 @@ func talk(answer = ""):
 						dialogue_state = 0
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle")
-			if boxes_taken == 3:
+			if item_counter == 3:
 				match dialogue_state:
 					0:
 						dialogue_state = 1
@@ -143,17 +154,17 @@ func talk(answer = ""):
 						dialogue_state = 0
 						quest_status = QuestStatus.COMPLETED
 						QuestsList.MerchantQuest = quest_status
+						remove_meals()
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle") 
 						player.add_coins(+50)
 						player.add_xp(100)
 						yield(get_tree().create_timer(0.5), "timeout") 
-						# TODO rimuovere le casse dall'inventario
 					99:
 						dialogue_state = 0
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle")
-			if boxes_taken >= 3:
+			if item_counter > 3:
 				match dialogue_state:
 					0:
 						dialogue_state = 1
@@ -176,12 +187,12 @@ func talk(answer = ""):
 						dialogue_state = 0
 						quest_status = QuestStatus.COMPLETED
 						QuestsList.MerchantQuest = quest_status
+						remove_meals()
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle") 
 						player.add_coins(+50)
 						player.add_xp(100)
 						yield(get_tree().create_timer(0.5), "timeout") 
-						# TODO rimuovere le casse in più oltre quelle della quest
 					99:
 						dialogue_state = 0
 						dialoguePopup.close()
@@ -199,14 +210,17 @@ func talk(answer = ""):
 					$AnimatedSprite.play("idle")
 
 
+
+func remove_meals():
+	ItemHandler.temporary_items.erase('Packed Meal')
+
+
 func to_dictionary():
 	return {
 		"quest_status" : quest_status,
-		"boxes_taken" : boxes_taken
 	}
 
 
 func from_dictionary(data):
-	boxes_taken = data.boxes_taken
 	quest_status = int(data.quest_status)
 	QuestsList.MerchantQuest = quest_status
