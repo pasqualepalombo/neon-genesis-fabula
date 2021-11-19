@@ -50,6 +50,9 @@ func talk(answer = ""):
 					dialoguePopup.close()
 					$AnimatedSprite.play("idle")
 		QuestStatus.STARTED:
+			for i in ItemHandler.temporary_items.keys():
+				if str(i) == "Mom Medicine":
+					medicine_bought = true
 			match dialogue_state:
 				0:
 					dialogue_state = 1
@@ -74,6 +77,7 @@ func talk(answer = ""):
 					dialogue_state = 0
 					quest_status = QuestStatus.COMPLETED
 					QuestsList.MedicineQuest = quest_status
+					remove_meals()
 					dialoguePopup.close()
 					$AnimatedSprite.play("idle")
 					player.add_xp(150)
@@ -94,6 +98,10 @@ func talk(answer = ""):
 					dialogue_state = 0
 					dialoguePopup.close()
 					$AnimatedSprite.play("idle")
+
+
+func remove_meals():
+	ItemHandler.temporary_items.erase('Mom Medicine')
 
 
 func to_dictionary():

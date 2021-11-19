@@ -12,9 +12,6 @@ func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
 	QuestsList.DoctorQuest = quest_status
-	# BUG dovrebbe chiamare la funzione, ma non lo fa, e perciò non mi si aggiorna la GUI in carica partita
-	if medicine_bought and QuestsList.MedicineQuest != 2:
-		player.add_questitem_in_GUI(0,0,"notext")
 
 
 func talk(answer = ""):
@@ -57,7 +54,7 @@ func talk(answer = ""):
 							$AnimatedSprite.play("idle")
 							player.add_coins(-100)
 							player.add_xp(100)
-							player.add_questitem_in_GUI(0,0,"notext")
+							ItemHandler.add_to_temporary_items_dictionary("Mom Medicine", 1, 48, 0)
 							yield(get_tree().create_timer(0.5), "timeout")
 						"B":
 							dialogue_state = 4

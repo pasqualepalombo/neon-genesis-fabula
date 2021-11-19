@@ -1,3 +1,6 @@
+#BUG se salvo, in alcuni casi il log delle quest non riporta correttamente
+# il merchant ed il dealer (solo il questlog però, il resto è tutto perfettamente funzionante
+
 extends Node
 
 var load_saved_game = false
@@ -16,7 +19,7 @@ func _ready():
 		$House/Mother.from_dictionary(data.mother)
 		$DoctorHouse/Doctor.from_dictionary(data.doctor)
 		$Merchant.from_dictionary(data.merchant)
-		$SHDealer.from_dictionary(data.shdealer)
+		$Warehouse/SHDealer.from_dictionary(data.shdealer)
 		ItemHandler.temporary_items = data.inventory
 
 
@@ -27,7 +30,7 @@ func save():
 		"mother" : $House/Mother.to_dictionary(),
 		"doctor" : $DoctorHouse/Doctor.to_dictionary(),
 		"merchant" : $Merchant.to_dictionary(),
-		"shdealer" : $SHDealer.to_dictionary(),
+		"shdealer" : $Warehouse/SHDealer.to_dictionary(),
 		"inventory" : ItemHandler.temporary_items
 	}
 	

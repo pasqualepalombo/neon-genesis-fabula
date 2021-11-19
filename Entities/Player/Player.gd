@@ -11,8 +11,6 @@ signal player_stats_changed(Player)
 signal player_sleep(Player)
 # Connected to the GUI/LevelPopup, with all the variables. 
 signal player_level_up()
-# Connecter to the GUI/QuestObject
-signal player_additem_to_gui()
 
 # Player stats
 var speed = 75
@@ -184,11 +182,6 @@ func add_potion(type):
 	emit_signal("player_stats_changed", self)
 
 
-func add_questitem_in_GUI(x,y,text):
-	# TODO per ora non so come farlo meglio, forse rendere il player.gd script global?
-	emit_signal("player_additem_to_gui", x, y, text)
-
-
 func to_dictionary():
 	return {
 		"position" : [position.x, position.y],
@@ -200,7 +193,10 @@ func to_dictionary():
 		"xp_next_level" : xp_next_level,
 		"level" : level,
 		"health_potions" : health_potions,
-		"mana_potions" : mana_potions
+		"mana_potions" : mana_potions,
+		"coins" : coins,
+		"reputation" : reputation,
+		"attack_damage" : attack_damage
 	}
 
 
@@ -215,3 +211,6 @@ func from_dictionary(data):
 	level = data.level
 	health_potions = data.health_potions
 	mana_potions = data.mana_potions
+	coins = data.coins
+	reputation = data.reputation
+	attack_damage = data.attack_damage

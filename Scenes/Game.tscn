@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/SaveLoadGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
@@ -8,12 +8,10 @@
 [ext_resource path="res://Entities/Objects/Necklace/Necklace.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/Buildings/House.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Audio/Music/Child's Nightmare.ogg" type="AudioStream" id=8]
-[ext_resource path="res://Entities/Buildings/DoctorHouse.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Entities/Buildings/house1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Entities/Buildings/DoctorHouse/DoctorHouse.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Entities/Buildings/Warehouse/Warehouse.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Entities/NPCs/Merchant/Merchant.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Entities/Objects/QuestItems/packed_meal.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Entities/Objects/Potions/Potion.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Entities/NPCs/SHDealer/SHDealer.tscn" type="PackedScene" id=14]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -29,61 +27,16 @@ autoplay = true
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 108.365, 93.5369 )
+position = Vector2( 392.686, 100.211 )
 
 [node name="House" parent="." instance=ExtResource( 7 )]
 position = Vector2( 77.5374, 16.1068 )
-
-[node name="Node2D" parent="House" instance=ExtResource( 10 )]
-position = Vector2( 111.955, -46.0348 )
-
-[node name="DoctorHouse" parent="." instance=ExtResource( 9 )]
-position = Vector2( 322.947, 36.3401 )
 
 [node name="Fiona" parent="." instance=ExtResource( 5 )]
 position = Vector2( 55.8609, 72.1646 )
 
 [node name="Merchant" parent="." instance=ExtResource( 11 )]
 position = Vector2( 210.722, 70.2406 )
-
-[node name="SHDealer" parent="." instance=ExtResource( 14 )]
-position = Vector2( 145.947, 93.4458 )
-
-[node name="Merchant_box" parent="." instance=ExtResource( 12 )]
-position = Vector2( 91.9096, 130.955 )
-
-[node name="Merchant_box2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 92.1839, 125.136 )
-
-[node name="Merchant_box10" parent="." instance=ExtResource( 12 )]
-position = Vector2( 92.9785, 140.763 )
-
-[node name="Merchant_box11" parent="." instance=ExtResource( 12 )]
-position = Vector2( 91.6542, 150.828 )
-
-[node name="Merchant_box12" parent="." instance=ExtResource( 12 )]
-position = Vector2( 90.8596, 159.304 )
-
-[node name="Merchant_box3" parent="." instance=ExtResource( 12 )]
-position = Vector2( 92.2537, 117.906 )
-
-[node name="Merchant_box4" parent="." instance=ExtResource( 12 )]
-position = Vector2( 58.8827, 136.26 )
-
-[node name="Merchant_box6" parent="." instance=ExtResource( 12 )]
-position = Vector2( 58.549, 150.943 )
-
-[node name="Merchant_box7" parent="." instance=ExtResource( 12 )]
-position = Vector2( 26.5128, 116.905 )
-
-[node name="Merchant_box8" parent="." instance=ExtResource( 12 )]
-position = Vector2( 26.8465, 131.922 )
-
-[node name="Merchant_box9" parent="." instance=ExtResource( 12 )]
-position = Vector2( 26.1791, 146.939 )
-
-[node name="Merchant_box5" parent="." instance=ExtResource( 12 )]
-position = Vector2( 57.8815, 118.24 )
 
 [node name="Necklace" parent="." instance=ExtResource( 6 )]
 position = Vector2( 18.8775, 103.826 )
@@ -97,3 +50,9 @@ position = Vector2( 120.952, 143.631 )
 [node name="Potion3" parent="." instance=ExtResource( 13 )]
 position = Vector2( 121.267, 165.05 )
 type = 1
+
+[node name="Warehouse" parent="." instance=ExtResource( 10 )]
+position = Vector2( 478.77, 62.9961 )
+
+[node name="DoctorHouse" parent="." instance=ExtResource( 9 )]
+position = Vector2( 290.891, 73.8141 )

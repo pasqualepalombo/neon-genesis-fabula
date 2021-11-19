@@ -6,5 +6,5 @@ func _ready():
 		print("Signal Connection Error: PLAYER->GUI(Health) player_stats_changed")
 
 
-func on_player_sleep(_player):
+func on_player_sleep(player):
 	$AnimationPlayer.play("Sleep")
