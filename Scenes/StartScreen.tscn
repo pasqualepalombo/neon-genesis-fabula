@@ -1,74 +1,242 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Audio/night-chip.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Audio/Music/Spring Village.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/StartScreen.gd" type="Script" id=3]
+[ext_resource path="res://Assets/startscreen.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/GUI/starterscreen_voidicon.png" type="Texture" id=5]
+[ext_resource path="res://Assets/GUI/starterscreen_ninepatchrect.png" type="Texture" id=6]
+[ext_resource path="res://Assets/GUI/starterscreen_icon.png" type="Texture" id=7]
+[ext_resource path="res://Audio/menu_selection.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Fonts/TitleFont.tres" type="DynamicFont" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "starterscreen"
+length = 32.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("BackgroundTexture:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -236, -0.25, 0, 0.25, 0, -236, -0.25, 0, 0.25, 0, -1.52588e-05, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -236, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 6, 10.1, 16, 20, 26.9, 32 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("BackgroundTexture:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -120, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 1.19209e-07, -0.25, 0, 0.25, 0, -120, -0.25, 0, 0.25, 0, -120, -0.25, 0, 0.25, 0, -7.62939e-06, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 6, 10.1, 16, 20, 26.9, 32 )
+}
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 320.0
-margin_bottom = 180.0
-color = Color( 0, 0, 0, 1 )
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+self_modulate = Color( 0.529412, 0.529412, 0.529412, 1 )
+margin_left = -86.4069
+margin_top = -43.9357
+margin_right = 1833.59
+margin_bottom = 1036.06
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewGame" type="ColorRect" parent="."]
-margin_left = 70.0
-margin_top = 50.0
-margin_right = 250.0
-margin_bottom = 70.0
+[node name="NewGame" type="Node2D" parent="."]
+position = Vector2( 13.0661, 93.9961 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NewGame"]
+margin_left = 8.5
+margin_top = -10.6075
+margin_right = 108.5
+margin_bottom = 9.3925
+texture = ExtResource( 6 )
+patch_margin_left = 4
+patch_margin_right = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="NewGame"]
-margin_right = 180.0
+[node name="Label" type="Label" parent="NewGame/NinePatchRect"]
+margin_right = 100.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "NEW GAME"
+text = "New Game"
 align = 1
 valign = 1
-
-[node name="LoadGame" type="ColorRect" parent="."]
-margin_left = 70.0
-margin_top = 80.0
-margin_right = 250.0
-margin_bottom = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="LoadGame"]
-margin_right = 180.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "LOAD GAME"
-align = 1
-valign = 1
+[node name="Void" type="Sprite" parent="NewGame"]
+position = Vector2( 3, 0 )
+texture = ExtResource( 5 )
 
-[node name="Quit" type="ColorRect" parent="."]
-margin_left = 70.0
-margin_top = 110.0
-margin_right = 250.0
-margin_bottom = 130.0
+[node name="Icon" type="Sprite" parent="NewGame/Void"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 16, 16 )
+
+[node name="LoadGame" type="Node2D" parent="."]
+position = Vector2( 13.0661, 119.452 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="LoadGame"]
+margin_left = 8.5
+margin_top = -10.6075
+margin_right = 108.5
+margin_bottom = 9.3925
+texture = ExtResource( 6 )
+patch_margin_left = 4
+patch_margin_right = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Quit"]
-margin_right = 180.0
+[node name="Label" type="Label" parent="LoadGame/NinePatchRect"]
+margin_right = 100.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "QUIT"
+text = "Load Game"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Void" type="Sprite" parent="LoadGame"]
+position = Vector2( 3, 0 )
+texture = ExtResource( 5 )
+
+[node name="Icon" type="Sprite" parent="LoadGame/Void"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Settings" type="Node2D" parent="."]
+position = Vector2( 13.0661, 143.715 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Settings"]
+margin_left = 8.5
+margin_top = -10.6075
+margin_right = 108.5
+margin_bottom = 9.3925
+texture = ExtResource( 6 )
+patch_margin_left = 4
+patch_margin_right = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Settings/NinePatchRect"]
+margin_right = 100.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Void" type="Sprite" parent="Settings"]
+position = Vector2( 3, 0 )
+texture = ExtResource( 5 )
+
+[node name="Icon" type="Sprite" parent="Settings/Void"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="QuitGame" type="Node2D" parent="."]
+position = Vector2( 13.0661, 167.05 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="QuitGame"]
+margin_left = 8.5
+margin_top = -10.6075
+margin_right = 108.5
+margin_bottom = 9.3925
+texture = ExtResource( 6 )
+patch_margin_left = 4
+patch_margin_right = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="QuitGame/NinePatchRect"]
+margin_right = 100.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Void" type="Sprite" parent="QuitGame"]
+position = Vector2( 3, 0 )
+texture = ExtResource( 5 )
+
+[node name="Icon" type="Sprite" parent="QuitGame/Void"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 16, 16 )
+
+[node name="SelectedMenuEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_left = 4.06613
+margin_top = 33.0
+margin_right = 312.066
+margin_bottom = 66.0
+custom_fonts/normal_font = ExtResource( 9 )
+custom_colors/default_color = Color( 0.909804, 0.886275, 0.705882, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave] What if..."
+text = " What if..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="Label" parent="."]
+margin_left = 225.306
+margin_top = 152.715
+margin_right = 318.306
+margin_bottom = 180.715
+custom_fonts/font = ExtResource( 2 )
+text = "A game by
+Pasquale Palombo"
+align = 2
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/starterscreen = SubResource( 1 )

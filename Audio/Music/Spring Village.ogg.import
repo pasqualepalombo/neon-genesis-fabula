@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Spring Village.ogg-2826ac0bcb96f41cb932a9a803d44d86.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/Spring Village.ogg"
+dest_files=[ "res://.import/Spring Village.ogg-2826ac0bcb96f41cb932a9a803d44d86.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

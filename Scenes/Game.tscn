@@ -27,7 +27,7 @@ autoplay = true
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 392.686, 100.211 )
+position = Vector2( 141.064, 107.098 )
 
 [node name="House" parent="." instance=ExtResource( 7 )]
 position = Vector2( 77.5374, 16.1068 )
@@ -36,7 +36,7 @@ position = Vector2( 77.5374, 16.1068 )
 position = Vector2( 55.8609, 72.1646 )
 
 [node name="Merchant" parent="." instance=ExtResource( 11 )]
-position = Vector2( 210.722, 70.2406 )
+position = Vector2( 199.586, 73.8042 )
 
 [node name="Necklace" parent="." instance=ExtResource( 6 )]
 position = Vector2( 18.8775, 103.826 )

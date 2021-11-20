@@ -3,30 +3,36 @@ extends Node2D
 var selected_menu = 0
 
 func change_menu_color():
-	$NewGame.color = Color.gray
-	$LoadGame.color = Color.gray
-	$Quit.color = Color.gray
+	$NewGame/Void/Icon.hide()
+	$LoadGame/Void/Icon.hide()
+	$Settings/Void/Icon.hide()
+	$QuitGame/Void/Icon.hide()
 	
 	match selected_menu:
 		0:
-			$NewGame.color = Color.greenyellow
+			$NewGame/Void/Icon.show()
 		1:
-			$LoadGame.color = Color.greenyellow
+			$LoadGame/Void/Icon.show()
 		2:
-			$Quit.color = Color.greenyellow
+			$Settings/Void/Icon.show()
+		3:
+			$QuitGame/Void/Icon.show()
 
 func _ready():
 	change_menu_color()
+	$AnimationPlayer.play("starterscreen")
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_down"):
-		selected_menu = (selected_menu + 1) % 3;
+		selected_menu = (selected_menu + 1) % 4;
 		change_menu_color()
+		$SelectedMenuEffect.play()
 	elif Input.is_action_just_pressed("ui_up"):
 		if selected_menu > 0:
 			selected_menu = selected_menu - 1
 		else:
-			selected_menu = 2
+			selected_menu = 3
+		$SelectedMenuEffect.play()
 		change_menu_color()
 	elif Input.is_action_just_pressed("ui_accept"):
 		match selected_menu:
@@ -43,6 +49,9 @@ func _input(_event):
 				get_tree().root.call_deferred("add_child", next_level)
 				queue_free()
 			2:
+				#TODO setting (un popup giust con l'audio
+				pass
+			3:
 				# Quit game
 				get_tree().quit()
 
