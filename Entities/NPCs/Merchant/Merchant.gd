@@ -5,11 +5,13 @@ var quest_status = QuestStatus.NOT_STARTED
 var dialogue_state = 0
 var dialoguePopup
 var player
+var warehouse
 
 
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
+	warehouse = get_tree().root.get_node("Game/Warehouse")
 	QuestsList.MerchantQuest = quest_status
 
 
@@ -18,16 +20,27 @@ func talk(answer = ""):
 	dialoguePopup.npc = self
 	dialoguePopup.npc_name = "Merchant"
 	
+	#Check if at least 3 packed meals are available
+	var total_boxes = warehouse.check_packed_meals()
 	match quest_status:
 		QuestStatus.NOT_STARTED:
-			#TODO se non ci sono più casse (o cmq meno di tre) deve dire tipo "che giornataccia, non c'è cibo. ciao"
-			# e non può proprio farti partire la quest e la mette fallita
 			match dialogue_state:
 				0:
-					dialogue_state = 1
-					dialoguePopup.dialogue = "What a wonderful day. Tell me."
-					dialoguePopup.answers = Settings.yesKey + " Do you need some help?  " + Settings.nokey + " Nothing"
-					dialoguePopup.open()
+					if total_boxes == 12:
+						dialogue_state = 1
+						dialoguePopup.dialogue = "What a wonderful day. Tell me."
+						dialoguePopup.answers = Settings.yesKey + " Do you need some help?  " + Settings.nokey + " Nothing"
+						dialoguePopup.open()
+					if (total_boxes >= 3 and total_boxes < 12) or (total_boxes < 3 and QuestsList.DealerQuest == 0):
+						dialogue_state = 1
+						dialoguePopup.dialogue = "What? Someone stealed in our warehouse. You know that? Anyway, tell me."
+						dialoguePopup.answers = Settings.yesKey + " Do you need some help?  " + Settings.nokey + " Nothing"
+						dialoguePopup.open()
+					if total_boxes < 3 and (QuestsList.DealerQuest == 1 or QuestsList.DealerQuest == 2):
+						dialogue_state = 97
+						dialoguePopup.dialogue = "Someone stealed in our warehouse and the city has run out of meals."
+						dialoguePopup.answers = Settings.yesKey + " ... "
+						dialoguePopup.open()
 				1:
 					match answer:
 						"A":
@@ -95,12 +108,20 @@ func talk(answer = ""):
 					dialogue_state = 98
 					dialoguePopup.answers = Settings.yesKey + " Thanks! "
 					dialoguePopup.open()
+				97:
+					dialogue_state = 0
+					quest_status = QuestStatus.FAILED
+					QuestsList.MerchantQuest = quest_status
+					player.add_reputation(-10)
+					dialoguePopup.close()
+					$AnimatedSprite.play("idle") 
 				98:
 					dialogue_state = 0
 					quest_status = QuestStatus.COMPLETED
 					QuestsList.MerchantQuest = quest_status
 					dialoguePopup.close()
 					$AnimatedSprite.play("idle") 
+					player.add_reputation(10)
 					player.add_coins(+50)
 					player.add_xp(100)
 					remove_meals()
@@ -111,16 +132,13 @@ func talk(answer = ""):
 					$AnimatedSprite.play("idle")
 	
 		QuestStatus.STARTED:
-			#TODO se nel frattempo le casse sono finite allora ti dirà "grazie lo stesso, ma qualcuno ha rubato
-			# nel magazzino e la mette fallita
-			# potrei istanzarmi il dealer e sapere se è a 12 il numero delle sue casse, o meglio, 12-3 disponibili
 			var item_counter = 0
 			var variables 
 			for i in ItemHandler.temporary_items.keys():
 				if str(i) == "Packed Meal":
 					variables = ItemHandler.temporary_items[str(i)]
 					item_counter = variables[0]
-			if item_counter <3:
+			if item_counter <3 and total_boxes >= 3:
 				match dialogue_state:
 					0:
 						dialogue_state = 99
@@ -129,6 +147,20 @@ func talk(answer = ""):
 						dialoguePopup.open()
 					99:
 						dialogue_state = 0
+						dialoguePopup.close()
+						$AnimatedSprite.play("idle")
+			if item_counter <3 and total_boxes < 3:
+				match dialogue_state:
+					0:
+						dialogue_state = 99
+						dialoguePopup.dialogue = "Give up kid. There aren't enough meals in the warehouse."
+						dialoguePopup.answers = Settings.yesKey + " ..."
+						dialoguePopup.open()
+					99:
+						dialogue_state = 0
+						quest_status = QuestStatus.FAILED
+						QuestsList.MerchantQuest = quest_status
+						player.add_reputation(-10)
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle")
 			if item_counter == 3:
@@ -157,6 +189,7 @@ func talk(answer = ""):
 						remove_meals()
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle") 
+						player.add_reputation(10)
 						player.add_coins(+50)
 						player.add_xp(100)
 						yield(get_tree().create_timer(0.5), "timeout") 
@@ -190,6 +223,7 @@ func talk(answer = ""):
 						remove_meals()
 						dialoguePopup.close()
 						$AnimatedSprite.play("idle") 
+						player.add_reputation(10)
 						player.add_coins(+50)
 						player.add_xp(100)
 						yield(get_tree().create_timer(0.5), "timeout") 
@@ -203,6 +237,17 @@ func talk(answer = ""):
 					dialogue_state = 1
 					dialoguePopup.dialogue = "If I need help, I'll call you. Bye."
 					dialoguePopup.answers = Settings.yesKey + " Bye"
+					dialoguePopup.open()
+				1:
+					dialogue_state = 0
+					dialoguePopup.close()
+					$AnimatedSprite.play("idle")
+		QuestStatus.FAILED:
+			match dialogue_state:
+				0:
+					dialogue_state = 1
+					dialoguePopup.dialogue = "And now what can I do? Damn."
+					dialoguePopup.answers = Settings.yesKey + " ..."
 					dialoguePopup.open()
 				1:
 					dialogue_state = 0

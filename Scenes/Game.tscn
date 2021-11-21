@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/SaveLoadGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/GUI/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Entities/NPCs/Fiona/Fiona.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Entities/Objects/Necklace/Necklace.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/Buildings/House.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Audio/Music/Child's Nightmare.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Entities/Buildings/DoctorHouse/DoctorHouse.tscn" type="PackedScene" id=9]
@@ -32,14 +30,8 @@ position = Vector2( 141.064, 107.098 )
 [node name="House" parent="." instance=ExtResource( 7 )]
 position = Vector2( 77.5374, 16.1068 )
 
-[node name="Fiona" parent="." instance=ExtResource( 5 )]
-position = Vector2( 55.8609, 72.1646 )
-
 [node name="Merchant" parent="." instance=ExtResource( 11 )]
 position = Vector2( 199.586, 73.8042 )
-
-[node name="Necklace" parent="." instance=ExtResource( 6 )]
-position = Vector2( 18.8775, 103.826 )
 
 [node name="Potion" parent="." instance=ExtResource( 13 )]
 position = Vector2( 120.952, 125.992 )

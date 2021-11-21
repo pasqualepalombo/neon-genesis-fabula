@@ -49,7 +49,7 @@ func _input(_event):
 				get_tree().root.call_deferred("add_child", next_level)
 				queue_free()
 			2:
-				#TODO setting (un popup giust con l'audio
+				#TODO setting (un popup giust con l'audio)
 				pass
 			3:
 				# Quit game

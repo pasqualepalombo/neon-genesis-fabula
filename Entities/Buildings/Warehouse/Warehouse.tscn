@@ -47,44 +47,46 @@ visible = false
 position = Vector2( -3.95671, -9.21447 )
 shape = SubResource( 1 )
 
-[node name="packed_meal" parent="." instance=ExtResource( 5 )]
-position = Vector2( -49.3867, -45.4859 )
-
-[node name="packed_meal2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -33.7023, -45.4859 )
-
-[node name="packed_meal3" parent="." instance=ExtResource( 5 )]
-position = Vector2( -42.3788, -40.1465 )
-
-[node name="packed_meal4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 42.0499, -46.487 )
-
-[node name="packed_meal5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 22.361, -48.9898 )
-
-[node name="packed_meal6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 14.8525, -49.4904 )
-
-[node name="packed_meal7" parent="." instance=ExtResource( 5 )]
-position = Vector2( 5.1749, -47.655 )
-
-[node name="packed_meal8" parent="." instance=ExtResource( 5 )]
-position = Vector2( 16.1873, -44.3179 )
-
-[node name="packed_meal9" parent="." instance=ExtResource( 5 )]
-position = Vector2( -49.3867, 1.4004 )
-
-[node name="packed_meal10" parent="." instance=ExtResource( 5 )]
-position = Vector2( -47.5513, -5.44065 )
-
-[node name="packed_meal11" parent="." instance=ExtResource( 5 )]
-position = Vector2( -33.2018, 3.56952 )
-
-[node name="packed_meal12" parent="." instance=ExtResource( 5 )]
-position = Vector2( -3.66842, 3.56952 )
-
 [node name="SHDealer" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1.95802, 56.313 )
+
+[node name="PackedMealsCollection" type="Node2D" parent="."]
+
+[node name="packed_meal" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -49.3867, -45.4859 )
+
+[node name="packed_meal2" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -33.7023, -45.4859 )
+
+[node name="packed_meal3" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -42.3788, -40.1465 )
+
+[node name="packed_meal4" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( 42.0499, -46.487 )
+
+[node name="packed_meal5" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( 22.361, -48.9898 )
+
+[node name="packed_meal6" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( 14.8525, -49.4904 )
+
+[node name="packed_meal7" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( 5.1749, -47.655 )
+
+[node name="packed_meal8" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( 16.1873, -44.3179 )
+
+[node name="packed_meal9" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -49.3867, 1.4004 )
+
+[node name="packed_meal10" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -47.5513, -5.44065 )
+
+[node name="packed_meal11" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -33.2018, 3.56952 )
+
+[node name="packed_meal12" parent="PackedMealsCollection" instance=ExtResource( 5 )]
+position = Vector2( -3.66842, 3.56952 )
 
 [connection signal="body_entered" from="RoofHiding" to="." method="_on_RoofHiding_body_entered"]
 [connection signal="body_exited" from="RoofHiding" to="." method="_on_RoofHiding_body_exited"]

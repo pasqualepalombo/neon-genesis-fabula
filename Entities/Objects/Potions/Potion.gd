@@ -29,7 +29,6 @@ func _process(_delta):
 
 
 func _on_Potion_body_entered(body):
-	#TODO handle the MEDICINE AND BOH POTION
 	if body.name == "Player":
 		body.add_potion(type)
 		get_tree().queue_delete(self)

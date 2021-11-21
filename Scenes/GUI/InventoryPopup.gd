@@ -7,9 +7,6 @@ var menu_dic = {}
 var item_counter = 0
 var selected_slot
 
-func change_menu_color():
-	pass
-
 
 func load_all_stats():
 	# Loading General Information
@@ -42,7 +39,6 @@ func _input(_event):
 			get_tree().paused = true
 			# Reset the popup
 			selected_menu = 0
-			change_menu_color()
 			# Show popup
 			player.set_process_input(false)
 			popup()
@@ -96,7 +92,3 @@ func inventory_navigation(position):
 		$Items/ItemName.text = selected_slot.get_slot_name()
 	else: 
 		$Items/ItemName.text = ""
-
-
-func _ready():
-	pass
