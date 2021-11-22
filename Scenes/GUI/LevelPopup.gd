@@ -27,6 +27,7 @@ func _input(event):
 			set_process_input(false)
 			get_tree().paused = false
 		elif event.is_action_pressed("ui_cancel"):
+			pass
 			#TODO
 			#player.mana_max += 50
 			#player.mana += 50

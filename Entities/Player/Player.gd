@@ -125,7 +125,7 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		var target = $RayCast2D.get_collider()
 		if target != null:
-			if target.is_in_group("NPCs"):
+			if target.is_in_group("NPCs") or target.is_in_group("Signs"):
 					# Talk to NPC
 					target.talk()
 					return

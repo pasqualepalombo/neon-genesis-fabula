@@ -4,12 +4,12 @@
 [ext_resource path="res://Scenes/Places/Hometown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/GUI/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Objects/Signs/Woodsign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Buildings/House.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Audio/Music/Child's Nightmare.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Entities/Buildings/DoctorHouse/DoctorHouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Entities/Buildings/Warehouse/Warehouse.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Entities/NPCs/Merchant/Merchant.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Entities/Objects/Potions/Potion.tscn" type="PackedScene" id=13]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -25,26 +25,27 @@ autoplay = true
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 141.064, 107.098 )
+position = Vector2( 463.184, -5.47455 )
 
 [node name="House" parent="." instance=ExtResource( 7 )]
-position = Vector2( 77.5374, 16.1068 )
+position = Vector2( 439.677, 389.385 )
 
 [node name="Merchant" parent="." instance=ExtResource( 11 )]
-position = Vector2( 199.586, 73.8042 )
-
-[node name="Potion" parent="." instance=ExtResource( 13 )]
-position = Vector2( 120.952, 125.992 )
-
-[node name="Potion2" parent="." instance=ExtResource( 13 )]
-position = Vector2( 120.952, 143.631 )
-
-[node name="Potion3" parent="." instance=ExtResource( 13 )]
-position = Vector2( 121.267, 165.05 )
-type = 1
+position = Vector2( 288.221, 275.541 )
 
 [node name="Warehouse" parent="." instance=ExtResource( 10 )]
-position = Vector2( 478.77, 62.9961 )
+position = Vector2( 110.657, 46.4325 )
 
 [node name="DoctorHouse" parent="." instance=ExtResource( 9 )]
-position = Vector2( 290.891, 73.8141 )
+position = Vector2( 380.313, 249.849 )
+
+[node name="Woodsign" parent="." instance=ExtResource( 5 )]
+position = Vector2( 290.309, 353.427 )
+
+[node name="Woodsign2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 424.909, -28.9623 )
+which_sign = 1
+
+[node name="Woodsign3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -78.0914, 102.038 )
+which_sign = 2
