@@ -43,11 +43,13 @@ extents = Vector2( 8.1893, 9.18912 )
 "NPCs",
 ]]
 pause_mode = 2
+z_index = 1
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "idle"
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

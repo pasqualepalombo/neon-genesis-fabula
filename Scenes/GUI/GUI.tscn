@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://Assets/GUI/starterscreen_voidicon.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scenes/GUI/GUI_ninePatchRect.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/GUI/DialoguePopup.gd" type="Script" id=5]
@@ -12,11 +13,14 @@
 [ext_resource path="res://Scenes/GUI/items.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/GUI/HealthPotions.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/GUI/ManaPotions.gd" type="Script" id=13]
+[ext_resource path="res://Assets/GUI/starterscreen_icon.png" type="Texture" id=14]
 [ext_resource path="res://Assets/GUI/GUI_healthbar_full.png" type="Texture" id=15]
 [ext_resource path="res://Assets/GUI/GUI_healthbar_empty.png" type="Texture" id=16]
 [ext_resource path="res://Assets/GUI/dialoguebox_ninepatchrect.png" type="Texture" id=17]
 [ext_resource path="res://Scenes/GUI/DEBUGtext.gd" type="Script" id=18]
+[ext_resource path="res://Assets/GUI/starterscreen_ninepatchrect.png" type="Texture" id=19]
 [ext_resource path="res://Scenes/GUI/InventoryPopup.gd" type="Script" id=20]
+[ext_resource path="res://Audio/menu_selection.wav" type="AudioStream" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "ShowDialogue"
@@ -341,59 +345,120 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="MenuPopup"]
-margin_left = 60.0
-margin_top = 40.0
-margin_right = 260.0
-margin_bottom = 140.0
-color = Color( 0.313726, 0.313726, 0.313726, 1 )
+self_modulate = Color( 0.0784314, 0.0784314, 0.0784314, 0.784314 )
+margin_right = 320.0
+margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Resume" type="ColorRect" parent="MenuPopup"]
-margin_left = 70.0
-margin_top = 50.0
-margin_right = 250.0
-margin_bottom = 70.0
+[node name="ResumeGame" type="Node2D" parent="MenuPopup"]
+position = Vector2( 115, 50 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Label" type="Label" parent="MenuPopup/Resume"]
-margin_right = 180.0
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuPopup/ResumeGame"]
+margin_right = 100.0
+margin_bottom = 20.0
+texture = ExtResource( 19 )
+patch_margin_left = 4
+patch_margin_right = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="MenuPopup/ResumeGame/NinePatchRect"]
+margin_right = 100.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "RESUME GAME"
+text = "Resume Game"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SaveGame" type="ColorRect" parent="MenuPopup"]
-margin_left = 70.0
-margin_top = 80.0
-margin_right = 250.0
-margin_bottom = 100.0
+[node name="Void" type="Sprite" parent="MenuPopup/ResumeGame"]
+position = Vector2( 0, 10 )
+texture = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="MenuPopup/SaveGame"]
-margin_right = 180.0
+[node name="Icon" type="Sprite" parent="MenuPopup/ResumeGame/Void"]
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
+
+[node name="SaveGame" type="Node2D" parent="MenuPopup"]
+position = Vector2( 115, 80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuPopup/SaveGame"]
+margin_right = 100.0
+margin_bottom = 20.0
+texture = ExtResource( 19 )
+patch_margin_left = 4
+patch_margin_right = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="MenuPopup/SaveGame/NinePatchRect"]
+margin_right = 100.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "SAVE GAME"
+text = "Save Game"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MainMenu" type="ColorRect" parent="MenuPopup"]
-margin_left = 70.0
-margin_top = 110.0
-margin_right = 250.0
-margin_bottom = 130.0
+[node name="Void" type="Sprite" parent="MenuPopup/SaveGame"]
+position = Vector2( 0, 10 )
+texture = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="MenuPopup/MainMenu"]
-margin_right = 180.0
+[node name="Icon" type="Sprite" parent="MenuPopup/SaveGame/Void"]
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
+
+[node name="MainMenu" type="Node2D" parent="MenuPopup"]
+position = Vector2( 115, 110 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuPopup/MainMenu"]
+margin_right = 100.0
+margin_bottom = 20.0
+texture = ExtResource( 19 )
+patch_margin_left = 4
+patch_margin_right = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="MenuPopup/MainMenu/NinePatchRect"]
+margin_right = 100.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "MAIN MENU"
+text = "Main Menu"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Void" type="Sprite" parent="MenuPopup/MainMenu"]
+position = Vector2( 0, 10 )
+texture = ExtResource( 2 )
+
+[node name="Icon" type="Sprite" parent="MenuPopup/MainMenu/Void"]
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
 
 [node name="LevelPopup" type="Popup" parent="."]
 pause_mode = 2
@@ -531,5 +596,9 @@ script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="selectedMenuEffect" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+stream = ExtResource( 21 )
 
 [connection signal="animation_finished" from="DialoguePopup/AnimationPlayer" to="DialoguePopup" method="_on_AnimationPlayer_animation_finished"]

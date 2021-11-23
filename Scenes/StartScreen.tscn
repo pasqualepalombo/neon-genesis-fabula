@@ -233,10 +233,13 @@ margin_top = 152.715
 margin_right = 318.306
 margin_bottom = 180.715
 custom_fonts/font = ExtResource( 2 )
-text = "A game by
+text = "A game demo by
 Pasquale Palombo"
 align = 2
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/starterscreen = SubResource( 1 )

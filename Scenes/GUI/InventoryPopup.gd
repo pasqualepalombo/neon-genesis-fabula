@@ -90,5 +90,7 @@ func inventory_navigation(position):
 			selected_slot = $Items/GridContainer.get_child(selected_menu)
 			selected_slot.focus_on_me()
 		$Items/ItemName.text = selected_slot.get_slot_name()
+		if item_counter > 1:
+			get_parent().get_node("selectedMenuEffect").play()
 	else: 
 		$Items/ItemName.text = ""
