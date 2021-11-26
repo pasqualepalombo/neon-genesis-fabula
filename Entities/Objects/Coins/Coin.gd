@@ -9,7 +9,7 @@ var coin_value = 1
 var player
 
 #DEBUG forse da togliere?
-func _process(delta):
+func _process(_delta):
 	if Engine.editor_hint:
 		if which_coin == coin_type.Bronze:
 			$Sprite.region_rect.position.x = 32

@@ -28,12 +28,12 @@ position = Vector2( 91.5558, -0.196728 )
 polygon = PoolVector2Array( -41.7674, 12.0195, -57.3237, 11.8427, -57.3237, 10.075, -41.454, 10.0671 )
 
 [node name="Wall2" type="Sprite" parent="."]
-z_index = 2
+z_index = 6
 texture = ExtResource( 4 )
 
 [node name="Roof" type="Sprite" parent="."]
 visible = false
-z_index = 6
+z_index = 7
 texture = ExtResource( 1 )
 
 [node name="Wall" type="StaticBody2D" parent="."]

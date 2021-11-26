@@ -130,9 +130,6 @@ region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="Settings" type="Node2D" parent="."]
 position = Vector2( 13.0661, 143.715 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Settings"]
 margin_left = 8.5
@@ -166,6 +163,47 @@ position = Vector2( 0, 1 )
 texture = ExtResource( 7 )
 region_enabled = true
 region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="SettingsPopup" type="Node2D" parent="Settings"]
+visible = false
+position = Vector2( 143.751, 0 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Settings/SettingsPopup"]
+margin_left = -1.74759
+margin_top = -10.1643
+margin_right = 98.2524
+margin_bottom = 9.83568
+texture = ExtResource( 6 )
+patch_margin_left = 4
+patch_margin_right = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Settings/SettingsPopup/NinePatchRect"]
+margin_right = 100.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sound On/Off"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Void" type="Sprite" parent="Settings/SettingsPopup"]
+position = Vector2( -1.04196, 0.709213 )
+texture = ExtResource( 5 )
+
+[node name="CheckBox" type="CheckBox" parent="Settings/SettingsPopup/Void"]
+margin_left = -12.1582
+margin_top = -12.1469
+margin_right = 11.8418
+margin_bottom = 11.8531
+pressed = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="QuitGame" type="Node2D" parent="."]
 position = Vector2( 13.0661, 167.05 )
@@ -207,11 +245,13 @@ region_enabled = true
 region_rect = Rect2( 32, 0, 16, 16 )
 
 [node name="SelectedMenuEffect" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource( 8 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource( 1 )
-autoplay = true
+volume_db = -5.0
 
 [node name="Title" type="RichTextLabel" parent="."]
 margin_left = 4.06613

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mana_bonus.png-eb198384fe919df9405d93e9cb130733.stex"
+path="res://.import/motherhouse_roof.png-32705acea80844924651ceec55eb044c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI/mana_bonus.png"
-dest_files=[ "res://.import/mana_bonus.png-eb198384fe919df9405d93e9cb130733.stex" ]
+source_file="res://Entities/Buildings/MotherHouse/motherhouse_roof.png"
+dest_files=[ "res://.import/motherhouse_roof.png-32705acea80844924651ceec55eb044c.stex" ]
 
 [params]
 

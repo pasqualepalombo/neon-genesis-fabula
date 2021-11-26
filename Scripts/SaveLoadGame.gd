@@ -1,11 +1,18 @@
 #BUG se salvo, in alcuni casi il log delle quest non riporta correttamente
 # il merchant ed il dealer (solo il questlog però, il resto è tutto perfettamente funzionante
 
+# this file is attached to Game.tscn as script
+
 extends Node
+
+
 
 var load_saved_game = false
 
 func _ready():
+	if Settings.enable_audio:
+		$Music.playing = true
+	
 	var file = File.new()
 	if load_saved_game and file.file_exists("user://savegame.json"):
 		file.open("user://savegame.json", File.READ)
@@ -13,7 +20,7 @@ func _ready():
 		file.close()
 		
 		$Player.from_dictionary(data.player)
-		$House/Mother.from_dictionary(data.mother)
+		$MotherHouse/Mother.from_dictionary(data.mother)
 		$DoctorHouse/Doctor.from_dictionary(data.doctor)
 		$Merchant.from_dictionary(data.merchant)
 		$Warehouse/SHDealer.from_dictionary(data.shdealer)
@@ -23,7 +30,7 @@ func _ready():
 func save():
 	var data = {
 		"player" : $Player.to_dictionary(),
-		"mother" : $House/Mother.to_dictionary(),
+		"mother" : $MotherHouse/Mother.to_dictionary(),
 		"doctor" : $DoctorHouse/Doctor.to_dictionary(),
 		"merchant" : $Merchant.to_dictionary(),
 		"shdealer" : $Warehouse/SHDealer.to_dictionary(),

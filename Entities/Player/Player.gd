@@ -1,4 +1,4 @@
-#BUG #TODO When player sleep, during the Sleep Animation, He can moves around
+#BUG When player sleep, during the Sleep Animation, He can moves around
 #BUG Quando il player apre l'inventario, poi preme menu e preme il tasto salva
 # o riprendi, rimane l'inventario aperto ma il player si può muovere, non comporta
 # problemi ma prima o poi bisogna sistemarlo
@@ -25,7 +25,7 @@ var reputation = 0
 var experience = 0
 var level = 1
 var xp_next_level = 100
-var attack_damage = 30
+var attack_damage = 10
 
 # Player extra
 enum Potion { HEALTH, MANA }
@@ -137,9 +137,9 @@ func _input(event):
 				mana = mana_max
 				emit_signal("player_stats_changed", self)
 				return
-	# DEBUG
+	# DEBUG tasto L
 	if event.is_action_pressed("debug2"):
-		pass
+		add_xp(+100)
 
 
 func _on_AnimatedSprite_animation_finished():

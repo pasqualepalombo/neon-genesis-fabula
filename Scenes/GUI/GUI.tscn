@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/starterscreen_voidicon.png" type="Texture" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Scenes/GUI/DialoguePopup.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/GUI/MenuPopup.gd" type="Script" id=7]
-[ext_resource path="res://Assets/GUI/health_bonus.png" type="Texture" id=8]
-[ext_resource path="res://Assets/GUI/mana_bonus.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/GUI/LevelPopup.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/GUI/items.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/GUI/HealthPotions.gd" type="Script" id=12]
@@ -318,7 +316,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reputation" type="RichTextLabel" parent="InventoryPopup/Statistics"]
+[node name="BaseAttack" type="RichTextLabel" parent="InventoryPopup/Statistics"]
 margin_left = 11.0
 margin_top = 20.0
 margin_right = 115.0
@@ -326,7 +324,8 @@ margin_bottom = 33.0
 custom_fonts/normal_font = ExtResource( 3 )
 text = "Base Attack: 20"
 
-[node name="Level" type="RichTextLabel" parent="InventoryPopup/Statistics"]
+[node name="FullAttack" type="RichTextLabel" parent="InventoryPopup/Statistics"]
+visible = false
 margin_left = 11.0
 margin_top = 30.0
 margin_right = 123.0
@@ -462,60 +461,93 @@ region_rect = Rect2( 80, 0, 16, 16 )
 
 [node name="LevelPopup" type="Popup" parent="."]
 pause_mode = 2
-margin_right = 150.0
-margin_bottom = 50.0
+visible = true
+margin_right = 200.0
+margin_bottom = 80.0
 popup_exclusive = true
 script = ExtResource( 10 )
-
-[node name="ColorRect" type="ColorRect" parent="LevelPopup"]
-margin_right = 150.0
-margin_bottom = 50.0
-color = Color( 0, 0, 0, 0.627451 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="LevelPopup/ColorRect"]
-margin_top = 1.0
-margin_right = 150.0
-margin_bottom = 11.0
+[node name="ColorRect" type="NinePatchRect" parent="LevelPopup"]
+margin_right = 200.0
+margin_bottom = 80.0
+texture = ExtResource( 4 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="LevelPopup/ColorRect"]
+margin_left = 15.0
+margin_top = 8.0
+margin_right = 185.0
+margin_bottom = 23.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Next Level!"
+text = "You're feeling yourself stronger!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthLabel" type="Label" parent="LevelPopup/ColorRect"]
+margin_left = 61.769
+margin_top = 29.1454
+margin_right = 161.769
+margin_bottom = 41.1454
+custom_fonts/font = ExtResource( 3 )
+text = "+20 Health Points"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="LevelPopup/ColorRect/HealthLabel"]
+position = Vector2( -6.47546, 7.08456 )
+scale = Vector2( 0.414063, 0.351563 )
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 16, 16 )
+
+[node name="AttackLabel" type="Label" parent="LevelPopup/ColorRect"]
+margin_left = 62.1685
+margin_top = 40.2299
+margin_right = 162.168
+margin_bottom = 52.2299
+custom_fonts/font = ExtResource( 3 )
+text = "+20 Base Attack"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="LevelPopup/ColorRect/AttackLabel"]
+position = Vector2( -6.875, 6 )
+scale = Vector2( 0.414063, 0.351563 )
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 16 )
+
+[node name="Label2" type="Label" parent="LevelPopup/ColorRect"]
+margin_left = 90.0
+margin_top = 64.897
+margin_right = 106.0
+margin_bottom = 76.897
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "[E]"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="LevelPopup/ColorRect"]
-position = Vector2( 58, 30 )
-texture = ExtResource( 8 )
-
-[node name="Sprite2" type="Sprite" parent="LevelPopup/ColorRect"]
-position = Vector2( 92, 30 )
-texture = ExtResource( 9 )
-
-[node name="Label2" type="Label" parent="LevelPopup/ColorRect"]
-margin_left = 16.0
-margin_top = 25.0
-margin_right = 32.0
-margin_bottom = 35.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "[E]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label3" type="Label" parent="LevelPopup/ColorRect"]
-margin_left = 110.0
-margin_top = 25.0
-margin_right = 143.0
-margin_bottom = 35.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "[Shift]"
 
 [node name="HealthPotions" type="ColorRect" parent="."]
 visible = false

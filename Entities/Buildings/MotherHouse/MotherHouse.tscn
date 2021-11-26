@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Entities/NPCs/Mother/Mother.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Buildings/MotherHouse/MotherHouse.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Buildings/MotherHouse/motherhouse_roof.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Buildings/MotherHouse/motherhouse_interior.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 58.4611, 27.1557 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="MotherHouse" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Interior" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="Roof" type="Sprite" parent="."]
+visible = false
+z_index = 6
+texture = ExtResource( 3 )
+
+[node name="RoofHiding" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0, 3.409 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoofHiding"]
+position = Vector2( -9.21635, -28.8383 )
+shape = SubResource( 1 )
+
+[node name="Mother" parent="." instance=ExtResource( 1 )]
+position = Vector2( -29.198, -48.9374 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -45.5945, 5.24019, -45.787, -2.52301, -66.1982, -2.52301, -66.3162, -22.3444, -41.0676, -22.2264, -40.9496, -50.0707, -14.7571, -49.8347, -13.5773, -25.294, 3.64832, -25.53, 3.64832, -49.9527, 27.3632, -49.7167, 48.4824, -50.1887, 48.2464, -2.52303, 23.8236, -2.52305, -28.6794, -2.40504, -28.6483, 5.09154, 4.05396, 5.15301, 3.90626, 13.7133, 35.2716, 13.8619, 38.0776, 12.2663, 38.2446, 5.53749, 50.434, 5.24019, 51.7859, 1.8424, 51.4319, -57.8577, 45.312, -63.6094, -64.1128, -63.6094, -69.738, -58.3296, -69.3786, 2.11852, -68.4867, 5.38884 )
+
+[node name="Bed" type="StaticBody2D" parent="."]
+position = Vector2( 37.5, -31.5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="RoofHiding" to="." method="_on_RoofHiding_body_entered"]
+[connection signal="body_exited" from="RoofHiding" to="." method="_on_RoofHiding_body_exited"]

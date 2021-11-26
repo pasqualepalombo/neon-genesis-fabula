@@ -6,6 +6,7 @@ func change_menu_color():
 	$NewGame/Void/Icon.hide()
 	$LoadGame/Void/Icon.hide()
 	$Settings/Void/Icon.hide()
+	$Settings/SettingsPopup.hide()
 	$QuitGame/Void/Icon.hide()
 	
 	match selected_menu:
@@ -15,12 +16,25 @@ func change_menu_color():
 			$LoadGame/Void/Icon.show()
 		2:
 			$Settings/Void/Icon.show()
+			$Settings/SettingsPopup.show()
 		3:
 			$QuitGame/Void/Icon.show()
 
 func _ready():
 	change_menu_color()
 	$AnimationPlayer.play("starterscreen")
+	if Settings.enable_audio:
+		$Settings/SettingsPopup/Void/CheckBox.pressed = true
+		$BackgroundMusic.playing = true
+	else:
+		$Settings/SettingsPopup/Void/CheckBox.pressed = false
+		$BackgroundMusic.playing = false
+	
+
+
+func _process(delta):
+		pass
+
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_down"):
@@ -43,14 +57,17 @@ func _input(_event):
 					print("Errore nel caricare il gioco da menu principale")
 			1:
 				# Load game
-				var next_level_resource = load("res://Scenes/Game.tscn");
+				var next_level_resource = preload("res://Scenes/Game.tscn");
 				var next_level = next_level_resource.instance()
 				next_level.load_saved_game = true
 				get_tree().root.call_deferred("add_child", next_level)
 				queue_free()
 			2:
-				#TODO setting (un popup giust con l'audio)
-				pass
+				$Settings/SettingsPopup/Void/CheckBox.pressed = !$Settings/SettingsPopup/Void/CheckBox.pressed
+				Settings.enable_audio = not(Settings.enable_audio)
+				$BackgroundMusic.stream_paused = not(Settings.enable_audio)
+				if !$BackgroundMusic.stream_paused:
+					$BackgroundMusic.playing = true
 			3:
 				# Quit game
 				get_tree().quit()

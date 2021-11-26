@@ -16,7 +16,8 @@ func load_all_stats():
 	$General/Experience.bbcode_text = "Experience: " + str(player.experience) + "/" + str(player.xp_next_level)
 	
 	# Loading Statistics Information
-	# TODO
+	$Statistics/Health.bbcode_text = "Maximum Health: " + str(player.health_max)
+	$Statistics/BaseAttack.bbcode_text = "Base Attack: " + str(player.attack_damage)
 	
 	# Loading Inventory Information
 	# Quando apro l'inventario, si cicla su quanti item ho in temporary_items e per ognuno, si aggiunge un 
