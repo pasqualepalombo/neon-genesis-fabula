@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/BasicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/GUI/GUI_ninePatchRect.png" type="Texture" id=2]
+
+[node name="Messagetoplayers" type="Popup"]
+margin_right = 300.0
+margin_bottom = 160.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 300.0
+margin_bottom = 160.0
+rect_clip_content = true
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+margin_left = 15.0
+margin_top = 12.0
+margin_right = 285.0
+margin_bottom = 148.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Hello Adventurer,
+This is a demostrative demo created with the purpose of knowing what works well or works bad. 
+In the main menu you can open a document to send me your feedback.
+It'll be very usefull to improve the future prototype based on this demo.
+
+Cheers!
+"
+text = "Hello Adventurer,
+This is a demostrative demo created with the purpose of knowing what works well or works bad. 
+In the main menu you can open a document to send me your feedback.
+It'll be very usefull to improve the future prototype based on this demo.
+
+Cheers!
+"
+
+[node name="RichTextLabel2" type="Label" parent="NinePatchRect"]
+margin_left = 137.0
+margin_top = 129.0
+margin_right = 284.0
+margin_bottom = 148.0
+custom_fonts/font = ExtResource( 1 )
+text = "Pasquale Palombo"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

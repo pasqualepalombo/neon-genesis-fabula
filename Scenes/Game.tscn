@@ -28,7 +28,7 @@ volume_db = -6.0
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 3 )]
-position = Vector2( 225.783, 225.753 )
+position = Vector2( 455.783, 452.753 )
 
 [node name="Merchant" parent="." instance=ExtResource( 11 )]
 position = Vector2( 168.102, 193.051 )

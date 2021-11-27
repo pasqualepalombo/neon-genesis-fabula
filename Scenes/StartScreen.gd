@@ -29,11 +29,6 @@ func _ready():
 	else:
 		$Settings/SettingsPopup/Void/CheckBox.pressed = false
 		$BackgroundMusic.playing = false
-	
-
-
-func _process(delta):
-		pass
 
 
 func _input(_event):
@@ -48,7 +43,7 @@ func _input(_event):
 			selected_menu = 3
 		$SelectedMenuEffect.play()
 		change_menu_color()
-	elif Input.is_action_just_pressed("ui_accept"):
+	elif Input.is_action_just_released("ui_accept"):
 		match selected_menu:
 			0:
 				# New game

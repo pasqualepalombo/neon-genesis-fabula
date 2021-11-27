@@ -8,7 +8,6 @@ export(coin_type) var which_coin = coin_type.Gold
 var coin_value = 1
 var player
 
-#DEBUG forse da togliere?
 func _process(_delta):
 	if Engine.editor_hint:
 		if which_coin == coin_type.Bronze:

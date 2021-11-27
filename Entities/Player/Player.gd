@@ -1,7 +1,4 @@
 #BUG When player sleep, during the Sleep Animation, He can moves around
-#BUG Quando il player apre l'inventario, poi preme menu e preme il tasto salva
-# o riprendi, rimane l'inventario aperto ma il player si può muovere, non comporta
-# problemi ma prima o poi bisogna sistemarlo
 
 extends KinematicBody2D
 
@@ -137,9 +134,6 @@ func _input(event):
 				mana = mana_max
 				emit_signal("player_stats_changed", self)
 				return
-	# DEBUG tasto L
-	if event.is_action_pressed("debug2"):
-		add_xp(+100)
 
 
 func _on_AnimatedSprite_animation_finished():

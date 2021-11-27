@@ -34,37 +34,40 @@ func load_all_stats():
 
 
 func _input(_event):
-	if not visible:
-		if Input.is_action_just_pressed("inventory"):
-			# Pause game
-			get_tree().paused = true
-			# Reset the popup
-			selected_menu = 0
-			# Show popup
-			player.set_process_input(false)
-			popup()
-			load_all_stats()
-	else:
-		if Input.is_action_just_pressed("inventory"):
-			get_tree().paused = false
-			player.set_process_input(true)
-			hide()
-			# Inventory Mechanics.
-			# Alla chiusura, gli slot di gridcontainer vengono rimossi e reimpostate le variabili
-			# item_counter e menu_dic poichè servono per la navigazione dell'inventario
-			for i in $Items/GridContainer.get_children():
-				$Items/GridContainer.remove_child(i)
-			item_counter = 0
-			menu_dic = {}
-		
-		if Input.is_action_just_pressed("ui_up"):
-			pass
-		if Input.is_action_just_pressed("ui_down"):
-			pass
-		if Input.is_action_just_pressed("ui_right"):
-			inventory_navigation(1)
-		if Input.is_action_just_pressed("ui_left"):
-			inventory_navigation(-1)
+	if !Settings.is_in_pause:
+		if not visible:
+			if Input.is_action_just_pressed("inventory"):
+				Settings.is_in_inventory = true
+				# Pause game
+				get_tree().paused = true
+				# Reset the popup
+				selected_menu = 0
+				# Show popup
+				player.set_process_input(false)
+				popup()
+				load_all_stats()
+		else:
+			if Input.is_action_just_pressed("inventory"):
+				Settings.is_in_inventory = false
+				get_tree().paused = false
+				player.set_process_input(true)
+				hide()
+				# Inventory Mechanics.
+				# Alla chiusura, gli slot di gridcontainer vengono rimossi e reimpostate le variabili
+				# item_counter e menu_dic poichè servono per la navigazione dell'inventario
+				for i in $Items/GridContainer.get_children():
+					$Items/GridContainer.remove_child(i)
+				item_counter = 0
+				menu_dic = {}
+			
+			if Input.is_action_just_pressed("ui_up"):
+				pass
+			if Input.is_action_just_pressed("ui_down"):
+				pass
+			if Input.is_action_just_pressed("ui_right"):
+				inventory_navigation(1)
+			if Input.is_action_just_pressed("ui_left"):
+				inventory_navigation(-1)
 
 
 func inventory_navigation(position):

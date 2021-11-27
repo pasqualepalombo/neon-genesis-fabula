@@ -11,7 +11,8 @@ func _ready():
 func _input(event):
 	# DEBUG 
 	if event is InputEventKey:
-		if event.is_action_pressed("debug1"):
+		# The correct key is debug1. 
+		if event.is_action_pressed("debugx"):
 			get_parent().get_parent().get_node("DEBUGrect").visible = !get_parent().get_parent().get_node("DEBUGrect").visible
 			writeQuestList()
 			

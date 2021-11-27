@@ -1,11 +1,5 @@
-#BUG se salvo, in alcuni casi il log delle quest non riporta correttamente
-# il merchant ed il dealer (solo il questlog però, il resto è tutto perfettamente funzionante
-
 # this file is attached to Game.tscn as script
-
 extends Node
-
-
 
 var load_saved_game = false
 
