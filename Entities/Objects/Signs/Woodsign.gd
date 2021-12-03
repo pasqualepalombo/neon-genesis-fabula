@@ -34,7 +34,7 @@ func talk(answer = ""):
 			dialoguePopup.close()
 		2:
 			dialogue_state += 1
-			dialoguePopup.dialogue = "Watch out ahead. Trespasser will be killed (by monster)."
+			dialoguePopup.dialogue = "Watch out ahead. Trespasser will be killed (by monsters)."
 			dialoguePopup.answers = ""
 			dialoguePopup.open()
 		3:

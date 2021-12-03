@@ -8,13 +8,13 @@ func _ready():
 	bbcode_text = ""
 
 
-func _input(event):
+#func _input(event):
 	# DEBUG 
-	if event is InputEventKey:
+	#if event is InputEventKey:
 		# The correct key is debug1. 
-		if event.is_action_pressed("debugx"):
-			get_parent().get_parent().get_node("DEBUGrect").visible = !get_parent().get_parent().get_node("DEBUGrect").visible
-			writeQuestList()
+		#if event.is_action_pressed("debugx"):
+		#	get_parent().get_parent().get_node("DEBUGrect").visible = !get_parent().get_parent().get_node("DEBUGrect").visible
+		#	writeQuestList()
 			
 func writeQuestList():
 	bbcode_text = "Quest progression: "

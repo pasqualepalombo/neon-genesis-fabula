@@ -6,12 +6,14 @@ var dialogue_state = 0
 var medicine_bought = false
 var dialoguePopup
 var player
+var thanks
 
 
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Game/GUI/DialoguePopup")
 	player = get_tree().root.get_node("Game/Player")
 	QuestsList.MedicineQuest = quest_status
+	thanks = get_tree().root.get_node("Game/GUI")
 
 
 func talk(answer = ""):
@@ -36,7 +38,7 @@ func talk(answer = ""):
 							dialoguePopup.open()
 						"B":
 							dialogue_state = 3
-							dialoguePopup.dialogue = "Than... oh wait. I need them. Please."
+							dialoguePopup.dialogue = "Than... oh wait. I need it. Please."
 							dialoguePopup.answers = Settings.yesKey + " Bye"
 							dialoguePopup.open()
 				2:
@@ -83,6 +85,7 @@ func talk(answer = ""):
 					player.add_xp(150)
 					player.add_reputation(10)
 					yield(get_tree().create_timer(0.5), "timeout") 
+					thanks.showthanks()
 				3:
 					dialogue_state = 0
 					dialoguePopup.close()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/starterscreen_voidicon.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/GUI/MenuPopup.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/GUI/Messagetoplayers.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/GUI/Thankstoplayers.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/GUI/LevelPopup.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/GUI/items.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/GUI/HealthPotions.gd" type="Script" id=12]
@@ -634,5 +635,7 @@ pause_mode = 2
 stream = ExtResource( 21 )
 
 [node name="Messagetoplayers" parent="." instance=ExtResource( 8 )]
+
+[node name="Thankstoplayers" parent="." instance=ExtResource( 9 )]
 
 [connection signal="animation_finished" from="DialoguePopup/AnimationPlayer" to="DialoguePopup" method="_on_AnimationPlayer_animation_finished"]
